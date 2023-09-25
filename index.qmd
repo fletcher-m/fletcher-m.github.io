@@ -1,5 +1,28 @@
 ---
-title: "fletcher-m.github.io"
+title: "Fletcher McConnell"
+image: fletcher_photo.jpg
+toc: false
+about:
+  template: jolla
+  image-shape: rectangle
+  links:
+    - text: Linkedin
+      href: https://www.linkedin.com/in/fletcher-mcconnell-504931153/
+      icon: linkedin
+    - text: Github
+      href: https://github.com/fletcher-m
+      icon: github
+    - text: Email
+      href: mailto::fletcher.mcconnell@outlook.com
+      icon: envelope
 ---
 
-Hi this is Fletcher
+Hi, I'm Fletcher.
+
+I'll have my bio here and it's going to be great!
+
+## Education:
+
+BS Environmental Studies (2018)
+
+Current Master's Student at Bren, UCSB (Master's of Environmental Data Science)

@@ -2,9 +2,16 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "fletcher-m.github.io",
+    "title": "Fletcher McConnell",
     "section": "",
-    "text": "Hi this is Fletcher"
+    "text": "Hi, I’m Fletcher.\nI’ll have my bio here and it’s going to be great!"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Fletcher McConnell",
+    "section": "Education:",
+    "text": "Education:\nBS Environmental Studies (2018)\nCurrent Master’s Student at Bren, UCSB (Master’s of Environmental Data Science)"
   },
   {
     "objectID": "about.html",
