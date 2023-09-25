@@ -15,8 +15,8 @@ website:
 format:
   html:
     theme: 
-      light: spacelab
-      dark: zephyr
+      light: yeti
+      dark: spacelab
     css: styles.css
     toc: true
     page-layout: full
