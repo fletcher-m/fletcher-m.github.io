@@ -3,21 +3,32 @@ project:
   output-dir: docs
 
 website:
-  title: "Fletcher McConnell"
+  title: "Fletcher McConnell" # title: false, then logo: image to have a logo instead of name in upper left
   navbar:
+    favicon: fletcher_photo.jpg
     left:
       - href: index.qmd
         text: Home
       - about.qmd
       - href: resources.qmd
         text: Resources
-
+      - href: Resume/FletcherMcConnell_Resume.pdf
+        text: Resume
+    right: 
+      - icon: github
+        href: https://github.com/fletcher-m
+      - icon: envelope
+        href: mailto::fletcher.mcconnell@outlook.com
+      - icon: linkedin
+        href: https://www.linkedin.com/in/fletcher-mcconnell-504931153/
+  page-footer: 
+    background: light
+    left: "My footer"
 format:
   html:
-    theme: 
-      light: yeti
-      dark: spacelab
-    css: styles.css
+    theme: styles.scss
+   # css: styles.css
+    mainfont: Kanit
     toc: true
     page-layout: full
     
