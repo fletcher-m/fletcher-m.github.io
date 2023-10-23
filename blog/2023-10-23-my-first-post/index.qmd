@@ -1,0 +1,34 @@
+---
+title: "My first blog post"
+description: "I'm going to tell you about my blog"
+author:
+  - name: Fletcher McConnell
+    url: https://fletcher-m.github.io/
+   # orcid:
+    affiliation: MEDS
+    affiliation-url: https://bren.ucsb.edu/masters-programs/master-environmental-data-science/academics-meds
+ # - name: other person
+date: 10-23-2023
+categories: [Quarto, MEDS, Workshop]
+bibliography: references.bib
+citation:
+  url: https://fletcher-m.github.io/blog/2023-10-23-my-first-post/
+# image: image name in 2023-10-23-my-first-post directory
+# draft: true --> This setting will not show your blog post on your website but you can still see from url
+---
+
+## This is my first section
+
+Here is some[^1] awesome text.
+
+[^1]: This is my first footnote
+
+## This is my second section
+
+Hello.[^2]
+
+[^2]: This is an inline footnote
+
+I read stuff at this resource[@csik2022].
+
+I'm citing another resource here[@gaynor2022].
