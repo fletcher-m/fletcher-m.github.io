@@ -1,6 +1,6 @@
 ---
-title: "Ethical Considerations of Oceanic Data Access"
-description: "I analyze bottlenecks in the flow of information and important ethical consideratons in regards to ocean data"
+title: "EDS 223 Final Project"
+description: "This is the final project for eds 223"
 author:
   - name: Fletcher McConnell
     url: https://fletcher-m.github.io/
@@ -13,8 +13,6 @@ categories: [Quarto, MEDS, Workshop]
 bibliography: references.bib
 citation:
   url: https://fletcher-m.github.io/blog/2023-10-23-my-first-post/
-image: ocean_data_image.jpeg
+#image: ocean_data_image.jpeg
 # draft: true --> This setting will not show your blog post on your website but you can still see from url
 ---
-
-[@shepherd2018]
