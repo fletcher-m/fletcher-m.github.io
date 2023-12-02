@@ -1,0 +1,18 @@
+---
+title: "Ethical Considerations of Oceanic Data Access"
+description: "I analyze bottlenecks in the flow of information and important ethical consideratons in regards to ocean data"
+author:
+  - name: Fletcher McConnell
+    url: https://fletcher-m.github.io/
+   # orcid:
+    affiliation: MEDS
+    affiliation-url: https://bren.ucsb.edu/masters-programs/master-environmental-data-science/academics-meds
+ # - name: other person
+date: 12-01-2023
+categories: [Quarto, MEDS, Workshop]
+bibliography: references.bib
+citation:
+  url: https://fletcher-m.github.io/blog/2023-10-23-my-first-post/
+# image: image name in 2023-10-23-my-first-post directory
+# draft: true --> This setting will not show your blog post on your website but you can still see from url
+---

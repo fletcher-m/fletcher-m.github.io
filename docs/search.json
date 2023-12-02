@@ -42,6 +42,13 @@
     "text": "Footnotes\n\n\nThis is my first footnote↩︎\nThis is an inline footnote↩︎"
   },
   {
+    "objectID": "blog/2023-12-01-eds242-final-project/index.html",
+    "href": "blog/2023-12-01-eds242-final-project/index.html",
+    "title": "Ethical Considerations of Oceanic Data Access",
+    "section": "",
+    "text": "CitationBibTeX citation:@online{mcconnell2023,\n  author = {McConnell, Fletcher},\n  title = {Ethical {Considerations} of {Oceanic} {Data} {Access}},\n  date = {2023-12-01},\n  url = {https://fletcher-m.github.io/blog/2023-10-23-my-first-post/},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nMcConnell, Fletcher. 2023. “Ethical Considerations of Oceanic Data\nAccess.” December 1, 2023. https://fletcher-m.github.io/blog/2023-10-23-my-first-post/."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -53,6 +60,6 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "My first blog post\n\n\n\n\n\n\n\nQuarto\n\n\nMEDS\n\n\nWorkshop\n\n\n\n\nI’m going to tell you about my blog\n\n\n\n\n\n\nOct 23, 2023\n\n\nFletcher McConnell\n\n\n\n\n\n\nNo matching items"
+    "text": "Ethical Considerations of Oceanic Data Access\n\n\n\n\n\n\n\nQuarto\n\n\nMEDS\n\n\nWorkshop\n\n\n\n\nI analyze bottlenecks in the flow of information and important ethical consideratons in regards to ocean data\n\n\n\n\n\n\nDec 1, 2023\n\n\nFletcher McConnell\n\n\n\n\n\n\n  \n\n\n\n\nMy first blog post\n\n\n\n\n\n\n\nQuarto\n\n\nMEDS\n\n\nWorkshop\n\n\n\n\nI’m going to tell you about my blog\n\n\n\n\n\n\nOct 23, 2023\n\n\nFletcher McConnell\n\n\n\n\n\n\nNo matching items"
   }
 ]
