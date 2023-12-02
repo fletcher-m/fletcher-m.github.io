@@ -17,4 +17,16 @@ image: ocean_data_image.jpeg
 # draft: true --> This setting will not show your blog post on your website but you can still see from url
 ---
 
-[@shepherd2018]
+In this blog post, I try to highlight the importance of open access to ocean data. Collecting data from the ocean, especially the deep ocean, is an incredibly costly and risky operation that only a select number of countries around the world are able to undertake. Although only a few countries collect this data, it is essential that lesser able sovereign states can access it in order to make their own decisions regarding climate change, fishing practices as well as many other commitments that have economic and social ramifications. There are efforts to confront this problem and I try to highlight a few of these.  
+
+## Background in Ocean Exploration and Feasability
+
+The ocean has always been a difficult place to work in. Whether you are on its surface or beneath, the dynamics of wind, currents, waves and other factors set ocean-related activities far apart from those in the terrestrial environment. These difficult conditions, paired with the ocean\'s expansive nature, require that a vast amount of resources go into collecting data there. It can cost more than US\$30,000 per day to operate a modern research vessel, excluding the cost of scientific personnel and the actual research being done. [@lauro2014].
+
+## South Africa: A Case Study
+
+For many countries, the ocean plays a critical role in the economy. Naturally, with something so important, there should be deep knowledge and understanding. This is often not the case, due to funding restraints or other barriers to access. Operating without this knowledge can have ramifications for sustainability of resources and the overall contribution to local and global economies. South Africa can be used as an example of a nation highly reliant on the ocean and its resources but influenced by insufficient access to data. In South Africa, 85% of the mainland ocean territory is within the deep sea [@sink].
+
+![Map showing seafloor depths and the boundaries of South Africa\'s continental Exclusive Economic Zone (EEZ). doi:10.1371/journal.pone.0012008.g002](Map-showing-seafloor-depths-and-the-boundaries-of-South-Africas-continental-Exclusive.png)
+
+Information about the deep sea in South Africa, as well as other nations, is necessary to understand how increased industrial activities (i.e., oil extraction) may affect marine ecosystems present in that area [@sink]. Additionally, a lack of information could lead to a country missing out on potentially beneficial marine resources [@sink]. You can see how a disparity could arise between a country with deep knowledge of its marine territory and one without. Even if two countries had the same resources present in their waters, you have to know that resource exists in order to develop strategies to acquire it. undefinedun
