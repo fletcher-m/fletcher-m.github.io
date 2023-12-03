@@ -8,9 +8,9 @@
 
 <meta name="author" content="Fletcher McConnell">
 <meta name="dcterms.date" content="2023-12-01">
-<meta name="description" content="This is the final project for eds 223">
+<meta name="description" content="In this post, I analyze suitable habitat for oysters, based on temperature and depth parameters. I then find the amount of area within California EEZ regions that meets these requirements">
 
-<title>Fletcher McConnell - EDS 223 Final Project</title>
+<title>Fletcher McConnell - Determining Suitable Habitat for Oysters within EEZ regions of California</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -129,11 +163,11 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">EDS 223 Final Project</h1>
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Determining Suitable Habitat for Oysters within EEZ regions of California</h1>
                   <div>
         <div class="description">
-          This is the final project for eds 223
+          In this post, I analyze suitable habitat for oysters, based on temperature and depth parameters. I then find the amount of area within California EEZ regions that meets these requirements
         </div>
       </div>
                           <div class="quarto-categories">
@@ -177,28 +211,145 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#finding-suitable-habitat-for-oysters-in-california-eez-boundaries" id="toc-finding-suitable-habitat-for-oysters-in-california-eez-boundaries" class="nav-link active" data-scroll-target="#finding-suitable-habitat-for-oysters-in-california-eez-boundaries">Finding Suitable Habitat for Oysters in California EEZ Boundaries</a></li>
+  <li><a href="#finding-suitable-habitat-for-oysters-along-the-california-coast" id="toc-finding-suitable-habitat-for-oysters-along-the-california-coast" class="nav-link" data-scroll-target="#finding-suitable-habitat-for-oysters-along-the-california-coast">Finding Suitable Habitat for Oysters Along the California Coast</a>
+  <ul class="collapse">
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a></li>
+  <li><a href="#setting-raster-values-to-align-with-temperature-and-depth-parameters" id="toc-setting-raster-values-to-align-with-temperature-and-depth-parameters" class="nav-link" data-scroll-target="#setting-raster-values-to-align-with-temperature-and-depth-parameters">Setting Raster Values to Align with Temperature and Depth Parameters</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
 
 
 
+<section id="finding-suitable-habitat-for-oysters-in-california-eez-boundaries" class="level2">
+<h2 class="anchored" data-anchor-id="finding-suitable-habitat-for-oysters-in-california-eez-boundaries">Finding Suitable Habitat for Oysters in California EEZ Boundaries</h2>
+<p>Author: Fletcher McConnell</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>terra 1.7.55</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at /Users/fletchermcconnell/Documents/Github/fletcher-m.github.io</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:terra':
+
+    intersect, union</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'tmap'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:datasets':
+
+    rivers</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ forcats   1.0.0     ✔ readr     2.1.4
+✔ ggplot2   3.4.4     ✔ stringr   1.5.0
+✔ lubridate 1.9.2     ✔ tibble    3.2.1
+✔ purrr     1.0.2     ✔ tidyr     1.3.0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ tidyr::extract() masks terra::extract()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: sp
+
+Attaching package: 'raster'
+
+The following object is masked from 'package:dplyr':
+
+    select</code></pre>
+</div>
+</div>
+</section>
+<section id="finding-suitable-habitat-for-oysters-along-the-california-coast" class="level2">
+<h2 class="anchored" data-anchor-id="finding-suitable-habitat-for-oysters-along-the-california-coast">Finding Suitable Habitat for Oysters Along the California Coast</h2>
+<section id="data-wrangling" class="level3">
+<h3 class="anchored" data-anchor-id="data-wrangling">Data Wrangling</h3>
+<p>First, I was interested in what portions of Califonia’s coastline would be suitable for Oysters. They have an ideal depth range of 0 to 70 meters and ideal temperature range of 11 to 30 degrees Celsius. In order to find where these parameters are met, I used data of annual sea surface temperatures from 2008 to 2012 and then also used bathymetry data of the ocean. These first series of steps involve me doing a bit of data wrangling and making sure that I would be able to stack my depth raster with my temperature raster. I had previously combined all 4 years of temperature data into a raster stack ‘all_sst’.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find mean SST</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>all_sst_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(all_sst)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># convert SST data to Celsius</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>all_sst_mean <span class="ot">&lt;-</span> all_sst_mean <span class="sc">-</span> <span class="fl">273.15</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># crop depth to match SST raster</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>depth <span class="ot">&lt;-</span> <span class="fu">crop</span>(depth, all_sst_mean)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># resample depth data to match SST resolution</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>depth <span class="ot">&lt;-</span> <span class="fu">resample</span>(<span class="at">x =</span> depth, <span class="at">y =</span>  all_sst_mean, <span class="at">method =</span> <span class="st">"near"</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># check that that depth and SST match in resolution, extent and crs (by stacking them)</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>depth_sst <span class="ot">&lt;-</span> <span class="fu">c</span>(depth, all_sst_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="setting-raster-values-to-align-with-temperature-and-depth-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="setting-raster-values-to-align-with-temperature-and-depth-parameters">Setting Raster Values to Align with Temperature and Depth Parameters</h3>
+<p>After I had my depth and temperature rasters combined, I then needed to filter these rasters to the values that I wanted. As I mentioned above, Oysters like temperature between 11 and 33 degrees Celsius and do best in depths from 0 to 70 meters. After assigning these parameter values, I plotted areas along the coast that meet both of these criteria. The following is what I came up with:</p>
+<p><img src="temp_depth.png" class="img-fluid"></p>
+<p>The above plot shows the California coastline. In this plot, I have set values within temperature and depth parameters equal to “1” and combined both rasters. The colored regions represent areas that are within both of the specified depth and temperature regions.</p>
 
 
+</section>
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{mcconnell2023,
   author = {McConnell, Fletcher},
-  title = {EDS 223 {Final} {Project}},
+  title = {Determining {Suitable} {Habitat} for {Oysters} Within {EEZ}
+    Regions of {California}},
   date = {2023-12-01},
   url = {https://fletcher-m.github.io/blog/2023-10-23-my-first-post/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-mcconnell2023" class="csl-entry quarto-appendix-citeas" role="listitem">
-McConnell, Fletcher. 2023. <span>“EDS 223 Final Project.”</span>
-December 1, 2023. <a href="https://fletcher-m.github.io/blog/2023-10-23-my-first-post/">https://fletcher-m.github.io/blog/2023-10-23-my-first-post/</a>.
+McConnell, Fletcher. 2023. <span>“Determining Suitable Habitat for
+Oysters Within EEZ Regions of California.”</span> December 1, 2023. <a href="https://fletcher-m.github.io/blog/2023-10-23-my-first-post/">https://fletcher-m.github.io/blog/2023-10-23-my-first-post/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

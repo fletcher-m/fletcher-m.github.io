@@ -1,6 +1,6 @@
 ---
-title: "EDS 220 Final Project"
-description: "This is the final project for eds 220"
+title: "Plotting AQI and Thomas Fire Burn Area in Santa Barbara County in Python "
+description: "This is an analysis that I did where I looked at daily air quality index values in Santa Barbara in 2017-2018 as well as the area burned by the Thomas Fire (2017) and plotted both."
 author:
   - name: Fletcher McConnell
     url: https://fletcher-m.github.io/
