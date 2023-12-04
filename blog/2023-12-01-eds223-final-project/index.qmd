@@ -15,11 +15,14 @@ citation:
   url: https://fletcher-m.github.io/blog/2023-10-23-my-first-post/
 #image: ocean_data_image.jpeg
 # draft: true --> This setting will not show your blog post on your website but you can still see from url
+eval: FALSE
 ---
 
 ## Finding Suitable Habitat for Oysters in California EEZ Boundaries
 
 Author: Fletcher McConnell
+
+First, I loaded all of the packages needed for this analysis:
 
 ```{r, results='hide'}
 # load packages
