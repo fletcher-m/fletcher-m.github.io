@@ -67,7 +67,14 @@
     "href": "blog/2023-12-01-eds220-final-project/index.html",
     "title": "Plotting AQI and Thomas Fire Burn Area in Santa Barbara County in Python",
     "section": "",
-    "text": "Plotting AQI in Santa Barbara and Thomas Fire Burn Area Map\nFor this project, I looked into constructing a plot of air quality index (AQI) values for Santa Barbara from 2017 to 2018. I also constructed an overlay of the Thomas Fire burn area on a false color image of Santa Barbara county.\nLink to Github Repository: https://github.com/fletcher-m/aqi-thomas-fire-sb\n\n# select red, green and blue variables from the NetCDF data and plot \nbands[['red', 'green', 'blue']].to_array().plot.imshow()\n\n\n\n\n\n\nCitationBibTeX citation:@online{mcconnell2023,\n  author = {McConnell, Fletcher},\n  title = {Plotting {AQI} and {Thomas} {Fire} {Burn} {Area} in {Santa}\n    {Barbara} {County} in {Python}},\n  date = {2023-12-01},\n  url = {https://fletcher-m.github.io/blog/2023-10-23-my-first-post/},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nMcConnell, Fletcher. 2023. “Plotting AQI and Thomas Fire Burn Area\nin Santa Barbara County in Python .” December 1, 2023. https://fletcher-m.github.io/blog/2023-10-23-my-first-post/."
+    "text": "For this project, I looked into constructing a plot of air quality index (AQI) values for Santa Barbara from 2017 to 2018. I also constructed an overlay of the Thomas Fire burn area on a false color image of Santa Barbara county.\nLink to Github Repository: https://github.com/fletcher-m/aqi-thomas-fire-sb\n\n\nI first set about plotting an image of Santa Barbara using data collected from satellite. This first plot uses the “red”, “green”, and “blue” bands in order to create a true color image.\n\n# select red, green and blue variables from the NetCDF data and plot \nbands[['red', 'green', 'blue']].to_array().plot.imshow()"
+  },
+  {
+    "objectID": "blog/2023-12-01-eds220-final-project/index.html#plotting-image-of-santa-barbara",
+    "href": "blog/2023-12-01-eds220-final-project/index.html#plotting-image-of-santa-barbara",
+    "title": "Plotting AQI and Thomas Fire Burn Area in Santa Barbara County in Python",
+    "section": "",
+    "text": "I first set about plotting an image of Santa Barbara using data collected from satellite. This first plot uses the “red”, “green”, and “blue” bands in order to create a true color image.\n\n# select red, green and blue variables from the NetCDF data and plot \nbands[['red', 'green', 'blue']].to_array().plot.imshow()"
   },
   {
     "objectID": "blog/2023-12-01-eds242-final-project/index.html",

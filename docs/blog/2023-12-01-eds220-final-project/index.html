@@ -216,7 +216,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#plotting-aqi-in-santa-barbara-and-thomas-fire-burn-area-map" id="toc-plotting-aqi-in-santa-barbara-and-thomas-fire-burn-area-map" class="nav-link active" data-scroll-target="#plotting-aqi-in-santa-barbara-and-thomas-fire-burn-area-map">Plotting AQI in Santa Barbara and Thomas Fire Burn Area Map</a></li>
+  <li><a href="#plotting-aqi-in-santa-barbara-and-thomas-fire-burn-area-map" id="toc-plotting-aqi-in-santa-barbara-and-thomas-fire-burn-area-map" class="nav-link active" data-scroll-target="#plotting-aqi-in-santa-barbara-and-thomas-fire-burn-area-map">Plotting AQI in Santa Barbara and Thomas Fire Burn Area Map</a>
+  <ul class="collapse">
+  <li><a href="#plotting-image-of-santa-barbara" id="toc-plotting-image-of-santa-barbara" class="nav-link" data-scroll-target="#plotting-image-of-santa-barbara">Plotting Image of Santa Barbara</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -230,13 +233,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Plotting AQI in Santa Barbara and Thomas Fire Burn Area Map</h1>
 <p>For this project, I looked into constructing a plot of air quality index (AQI) values for Santa Barbara from 2017 to 2018. I also constructed an overlay of the Thomas Fire burn area on a false color image of Santa Barbara county.</p>
 <p>Link to Github Repository: https://github.com/fletcher-m/aqi-thomas-fire-sb</p>
+<section id="plotting-image-of-santa-barbara" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-image-of-santa-barbara">Plotting Image of Santa Barbara</h2>
+<p>I first set about plotting an image of Santa Barbara using data collected from satellite. This first plot uses the “red”, “green”, and “blue” bands in order to create a true color image.</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select red, green and blue variables from the NetCDF data and plot </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>bands[[<span class="st">'red'</span>, <span class="st">'green'</span>, <span class="st">'blue'</span>]].to_array().plot.imshow()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="Screenshot 2023-12-04 at 10.26.50 AM.png" class="img-fluid"></p>
+<p><img src="screenshot.jpeg" class="img-fluid"></p>
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{mcconnell2023,

@@ -24,9 +24,13 @@ For this project, I looked into constructing a plot of air quality index (AQI) v
 
 Link to Github Repository: https://github.com/fletcher-m/aqi-thomas-fire-sb
 
+## Plotting Image of Santa Barbara
+
+I first set about plotting an image of Santa Barbara using data collected from satellite. This first plot uses the "red", "green", and "blue" bands in order to create a true color image.
+
 ```{python}
 # select red, green and blue variables from the NetCDF data and plot 
 bands[['red', 'green', 'blue']].to_array().plot.imshow()
 ```
 
-![](Screenshot 2023-12-04 at 10.26.50 AM.png)
+![](screenshot.jpeg)
