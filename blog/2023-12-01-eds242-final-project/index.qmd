@@ -23,9 +23,19 @@ In this blog post, I try to highlight the importance of open access to ocean dat
 
 The ocean has always been a difficult place to work in. Whether you are on its surface or beneath, the dynamics of wind, currents, waves and other factors set ocean-related activities far apart from those in the terrestrial environment. These difficult conditions, paired with the ocean's expansive nature, require that a vast amount of resources go into collecting data there. It can cost more than US\$30,000 per day to operate a modern research vessel, excluding the cost of scientific personnel and the actual research being done. [@lauro2014].
 
+## Why is Ocean Data Important?
+
+The amount of data coming from the ocean is vast and is cons
+
+## A New Framework for Looking at Data
+
+![[@raising2017]](cultural_ocean.jpeg)
+
+For a very long time, the term "data" has been reserved for empirical and quantifiable measurements. It is associated with the hard sciences and, in relation to the ocean, it takes the form of sea surface temperature, counts of species, wind speed and other similar measurements. All of this collected information is incredibly vast and undeniably important. It is what allows us to conduct commerce, extract valuable resources and, hopefully, protect this natural environment. Something that is often neglected in this research is cultural data. This is something that is beginning to gain traction and is being interwoven into research being done. There is a wealth of policy-focused research on fisheries science and ocean acidification [@raising2017]. Policy makers are able to take this research into account when they are forming decisions. For all of this available research, there is an equally insufficient amount of policy relevant documentation that describes the ocean as a cultural entity [@raising2017].
+
 ## South Africa: A Case Study
 
-For many countries, the ocean plays a critical role in the economy. Naturally, with something so important, there should be deep knowledge and understanding. This is often not the case, due to funding restraints or other barriers to access. Operating without this knowledge can have ramifications for sustainability of resources and the overall contribution to local and global economies. South Africa can be used as an example of a nation highly reliant on the ocean and its resources but influenced by insufficient access to data. In South Africa, 85% of the mainland ocean territory is within the deep sea [@sink].
+For many countries, the ocean plays a critical role in the economy. Naturally, with something so important, there should be deep knowledge and understanding. This is often not the case, due to funding restraints or other barriers to access. Operating without this knowledge can have ramifications for sustainability of resources and the overall contribution to local and global economies and cultures. South Africa can be used as an example of a nation highly reliant on the ocean and its resources but influenced by insufficient access to data. In South Africa, 85% of the mainland ocean territory is within the deep sea [@sink].
 
 ![Map showing seafloor depths and the boundaries of South Africa's continental Exclusive Economic Zone (EEZ). doi:10.1371/journal.pone.0012008.g002](Map-showing-seafloor-depths-and-the-boundaries-of-South-Africas-continental-Exclusive.png)
 
