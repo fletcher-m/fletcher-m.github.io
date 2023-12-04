@@ -65,3 +65,11 @@ After I had my depth and temperature rasters combined, I then needed to filter t
 ![](temp_depth.png)
 
 The above plot shows the California coastline. In this plot, I have set values within temperature and depth parameters equal to "1" and combined both rasters. The colored regions represent areas that are within both of the specified depth and temperature regions.
+
+### Overlaying Suitable Area with EEZ Regions
+
+Now that I had the area designated for suitable habitat for oysters, I wanted to explore which of the 5 EEZ regions along the west coast contained the most potential for oyster fishing. In order to do this, I needed to find the total suitable area within each EEZ region. Below is a plot showing each of the 5 regions and their corresponding total areas.
+
+![](eez_regions.png)
+
+As you can see, by comparing this plot with the one above, all of the EEZ regions contain at least some suitable oyster habitat. Now, I needed to find out just how much area there was in each region.
