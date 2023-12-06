@@ -35,4 +35,6 @@ bands[['red', 'green', 'blue']].to_array().plot.imshow()
 
 ![](screenshot.jpeg)
 
-Clearly, this is not what you should expect a true color image to look like. The issue here was to
+Clearly, this is not what you should expect a true color image to look like. The issue here was that the clouds were providing reflectance values far greater than everything else, so I corrected to not include outlier values and got this image:
+
+![](images/Screenshot 2023-12-05 at 8.43.13 PM.png)
