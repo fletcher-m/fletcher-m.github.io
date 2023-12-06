@@ -34,3 +34,5 @@ bands[['red', 'green', 'blue']].to_array().plot.imshow()
 ```
 
 ![](screenshot.jpeg)
+
+Clearly, this is not what you should expect a true color image to look like. The issue here was to
