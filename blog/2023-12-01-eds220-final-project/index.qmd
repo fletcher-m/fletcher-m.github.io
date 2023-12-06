@@ -24,17 +24,87 @@ For this project, I looked into constructing a plot of air quality index (AQI) v
 
 Link to Github Repository: https://github.com/fletcher-m/aqi-thomas-fire-sb
 
-## Plotting Image of Santa Barbara
+## Plotting AQI in Santa Barbara
 
-I first set about plotting an image of Santa Barbara using data collected from satellite. This first plot uses the "red", "green", and "blue" bands in order to create a true color image.
+The main goal for this section of the project was to develop a plot in order to visibly see if I could pick out a spike in AQI values during the time of the Thomas Fire in 2017. Fires tend to lead to spikes in AQI values, due to the amount of smoke that they emit. I expected to see that spike sometime around December of 2017.
+
+The data that I used for plotting AQI values was AQI data for the years of 2017-2018. If you would like to see what data I used and other coding steps that I took, please check out the GitHub repository linked above. Generally, I combined the data, filtered to the Santa Barbara County and made some updates in order to simplify the data frame. An important note is that I converted the date column to a datetime object in order to plot this. "aqi_sb" is the data frame that I had wrangled in some previous steps.
 
 ```{python}
-# select red, green and blue variables from the NetCDF data and plot 
-bands[['red', 'green', 'blue']].to_array().plot.imshow()
+#| code-fold: true
+# update the 'date' column to a datetime object and override the 'date' column with the output
+aqi_sb.date = pd.to_datetime(aqi_sb.date)
+
+# set date column as index
+aqi_sb = aqi_sb.set_index('date')
+
+# check to make sure the index is the 'date' column --> The data type of the index is 'datetime64'
+aqi_sb.index
 ```
 
-![](screenshot.jpeg)
+After I had the data in the correct format, time frame and target area, all that was left was to plot the information so that I could easily visualize it. I plotted a 5 day average along with daily AQI values to give a better idea of longer trends in the data. Below is the final plot.
 
-Clearly, this is not what you should expect a true color image to look like. The issue here was that the clouds were providing reflectance values far greater than everything else, so I corrected to not include outlier values and got this image:
+```{python}
+#| code-fold: true
+# assign line colors for 'aqi' and 'five_day_average' 
+colors = {'aqi': 'red',
+         'five_day_average': 'black'}
+
+# make a line plot for 'aqi' and 'five_day_average' over time
+aqi_sb[['aqi', 'five_day_average']].plot(title="Daily AQI in Santa Barbara (2017-2018)",
+                                       color=colors,
+                                        ylabel='AQI')
+```
+
+![](images/aqi_sb.png)
+
+As you can see from the plot, there is an obvious spike around December of 2017, which is what I expected. The Thomas Fire was quite large and left a massive burn area in its wake. In the next section, I will plot that burn area and show it in relation to Santa Barbara County.
+
+## Plotting Image of Santa Barbara With Thomas Fire Boundary
+
+I first set about plotting an image of Santa Barbara using data collected from satellite. There were a couple of steps before this, which you can see on my github repository (link above). This first plot uses the "red", "green", and "blue" bands in order to create a true color image. Below, you can see that image plotted with the Santa Barbara region and Channel Islands off of the coast.
+
+```{python}
+#| code-fold: true
+# select red, green and blue variables from the NetCDF data and plot 
+bands[['red', 'green', 'blue']].to_array().plot.imshow(robust = TRUE)
+```
 
 ![](images/map.png)
+
+After plotting this true color image of the Santa Barbara region, I wanted to see what a false color image would look like. This followed the same process, only selecting different bands to display. Instead of "red", "green" and "blue", I chose short-wave infrared (SWIR22), near-infrared (NIR08), and red bands. Below is a plot of what that looks like.
+
+```{python}
+#| code-fold: true
+# select short wave infrared, near-infrared and red variables and plot
+bands[['swir22', 'nir08', 'red']].to_array().plot.imshow(robust=True)
+```
+
+![](images/false_image.png)
+
+In order to find the burn area for the Thomas Fire (2017), I had to do some filtering of the fire data
+
+```{python}
+#| code-fold: true
+# initiate figure
+fig, ax = plt.subplots(figsize=(6,6))
+
+# plot false color image of Santa Barbara
+false_color.plot.imshow(ax=ax, robust=True)
+
+# plot Thomas Fire region
+thomas_fire.plot(ax=ax, color='red', alpha=0.5, edgecolor='black', linewidth=0.5)
+thomas_patch = mpatches.Patch(color='red', label='Thomas Fire')
+
+# create legend
+ax.legend(handles=[thomas_patch], frameon=True, loc='upper right', bbox_to_anchor=(1.4, 1))
+ax.set_title('False Color Image of Santa Barbara with Thomas Fire Boundary')
+```
+
+![](images/thomas_fire.png)
+
+## Summary and Take-Aways
+
+Visualizing data is almost always the best way to gain a grasp on data. Looking at the raw data for AQI values in Santa Barbara would have led to seeing high numbers during the Thomas Fire, but the line plot really puts it into perspective. Overlaying the burn area is also a great way to show the impact of the fire.
+
+I think that at times, it is easy to get caught up in the data, forgetting where it all came from, so I want to briefly describe the impact of the fire that I analyzed. The Thomas Fire was the largest fire in modern California history, burning 273,400 acres over a period of 6 months [@thethom]. It was the 3rd most destructive in structure losses, destroying 1,063 buildings [@thethom]. There were many factors that led to the size of this fire, including strong Santa Ana winds that fanned the flames, and it will undoubtedly remain in the top of the charts for California fires.

@@ -57,7 +57,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -218,7 +237,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#plotting-aqi-in-santa-barbara-and-thomas-fire-burn-area-map" id="toc-plotting-aqi-in-santa-barbara-and-thomas-fire-burn-area-map" class="nav-link active" data-scroll-target="#plotting-aqi-in-santa-barbara-and-thomas-fire-burn-area-map">Plotting AQI in Santa Barbara and Thomas Fire Burn Area Map</a>
   <ul class="collapse">
-  <li><a href="#plotting-image-of-santa-barbara" id="toc-plotting-image-of-santa-barbara" class="nav-link" data-scroll-target="#plotting-image-of-santa-barbara">Plotting Image of Santa Barbara</a></li>
+  <li><a href="#plotting-aqi-in-santa-barbara" id="toc-plotting-aqi-in-santa-barbara" class="nav-link" data-scroll-target="#plotting-aqi-in-santa-barbara">Plotting AQI in Santa Barbara</a></li>
+  <li><a href="#plotting-image-of-santa-barbara-with-thomas-fire-boundary" id="toc-plotting-image-of-santa-barbara-with-thomas-fire-boundary" class="nav-link" data-scroll-target="#plotting-image-of-santa-barbara-with-thomas-fire-boundary">Plotting Image of Santa Barbara With Thomas Fire Boundary</a></li>
+  <li><a href="#summary-and-take-aways" id="toc-summary-and-take-aways" class="nav-link" data-scroll-target="#summary-and-take-aways">Summary and Take-Aways</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -233,22 +254,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Plotting AQI in Santa Barbara and Thomas Fire Burn Area Map</h1>
 <p>For this project, I looked into constructing a plot of air quality index (AQI) values for Santa Barbara from 2017 to 2018. I also constructed an overlay of the Thomas Fire burn area on a false color image of Santa Barbara county.</p>
 <p>Link to Github Repository: https://github.com/fletcher-m/aqi-thomas-fire-sb</p>
-<section id="plotting-image-of-santa-barbara" class="level2">
-<h2 class="anchored" data-anchor-id="plotting-image-of-santa-barbara">Plotting Image of Santa Barbara</h2>
-<p>I first set about plotting an image of Santa Barbara using data collected from satellite. This first plot uses the “red”, “green”, and “blue” bands in order to create a true color image.</p>
+<section id="plotting-aqi-in-santa-barbara" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-aqi-in-santa-barbara">Plotting AQI in Santa Barbara</h2>
+<p>The main goal for this section of the project was to develop a plot in order to visibly see if I could pick out a spike in AQI values during the time of the Thomas Fire in 2017. Fires tend to lead to spikes in AQI values, due to the amount of smoke that they emit. I expected to see that spike sometime around December of 2017.</p>
+<p>The data that I used for plotting AQI values was AQI data for the years of 2017-2018. If you would like to see what data I used and other coding steps that I took, please check out the GitHub repository linked above. Generally, I combined the data, filtered to the Santa Barbara County and made some updates in order to simplify the data frame. An important note is that I converted the date column to a datetime object in order to plot this. “aqi_sb” is the data frame that I had wrangled in some previous steps.</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select red, green and blue variables from the NetCDF data and plot </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>bands[[<span class="st">'red'</span>, <span class="st">'green'</span>, <span class="st">'blue'</span>]].to_array().plot.imshow()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update the 'date' column to a datetime object and override the 'date' column with the output</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>aqi_sb.date <span class="op">=</span> pd.to_datetime(aqi_sb.date)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set date column as index</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>aqi_sb <span class="op">=</span> aqi_sb.set_index(<span class="st">'date'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># check to make sure the index is the 'date' column --&gt; The data type of the index is 'datetime64'</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>aqi_sb.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<p><img src="screenshot.jpeg" class="img-fluid"></p>
-<p>Clearly, this is not what you should expect a true color image to look like. The issue here was that the clouds were providing reflectance values far greater than everything else, so I corrected to not include outlier values and got this image:</p>
+<p>After I had the data in the correct format, time frame and target area, all that was left was to plot the information so that I could easily visualize it. I plotted a 5 day average along with daily AQI values to give a better idea of longer trends in the data. Below is the final plot.</p>
+<div class="cell" data-execution_count="2">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign line colors for 'aqi' and 'five_day_average' </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> {<span class="st">'aqi'</span>: <span class="st">'red'</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">'five_day_average'</span>: <span class="st">'black'</span>}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># make a line plot for 'aqi' and 'five_day_average' over time</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>aqi_sb[[<span class="st">'aqi'</span>, <span class="st">'five_day_average'</span>]].plot(title<span class="op">=</span><span class="st">"Daily AQI in Santa Barbara (2017-2018)"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                                       color<span class="op">=</span>colors,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                                        ylabel<span class="op">=</span><span class="st">'AQI'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><img src="images/aqi_sb.png" class="img-fluid"></p>
+<p>As you can see from the plot, there is an obvious spike around December of 2017, which is what I expected. The Thomas Fire was quite large and left a massive burn area in its wake. In the next section, I will plot that burn area and show it in relation to Santa Barbara County.</p>
+</section>
+<section id="plotting-image-of-santa-barbara-with-thomas-fire-boundary" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-image-of-santa-barbara-with-thomas-fire-boundary">Plotting Image of Santa Barbara With Thomas Fire Boundary</h2>
+<p>I first set about plotting an image of Santa Barbara using data collected from satellite. There were a couple of steps before this, which you can see on my github repository (link above). This first plot uses the “red”, “green”, and “blue” bands in order to create a true color image. Below, you can see that image plotted with the Santa Barbara region and Channel Islands off of the coast.</p>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select red, green and blue variables from the NetCDF data and plot </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bands[[<span class="st">'red'</span>, <span class="st">'green'</span>, <span class="st">'blue'</span>]].to_array().plot.imshow(robust <span class="op">=</span> TRUE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p><img src="images/map.png" class="img-fluid"></p>
+<p>After plotting this true color image of the Santa Barbara region, I wanted to see what a false color image would look like. This followed the same process, only selecting different bands to display. Instead of “red”, “green” and “blue”, I chose short-wave infrared (SWIR22), near-infrared (NIR08), and red bands. Below is a plot of what that looks like.</p>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select short wave infrared, near-infrared and red variables and plot</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bands[[<span class="st">'swir22'</span>, <span class="st">'nir08'</span>, <span class="st">'red'</span>]].to_array().plot.imshow(robust<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><img src="images/false_image.png" class="img-fluid"></p>
+<p>In order to find the burn area for the Thomas Fire (2017), I had to do some filtering of the fire data</p>
+<div class="cell" data-execution_count="5">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate figure</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">6</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot false color image of Santa Barbara</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>false_color.plot.imshow(ax<span class="op">=</span>ax, robust<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot Thomas Fire region</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>thomas_fire.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>thomas_patch <span class="op">=</span> mpatches.Patch(color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Thomas Fire'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create legend</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ax.legend(handles<span class="op">=</span>[thomas_patch], frameon<span class="op">=</span><span class="va">True</span>, loc<span class="op">=</span><span class="st">'upper right'</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">1.4</span>, <span class="dv">1</span>))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'False Color Image of Santa Barbara with Thomas Fire Boundary'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><img src="images/thomas_fire.png" class="img-fluid"></p>
+</section>
+<section id="summary-and-take-aways" class="level2">
+<h2 class="anchored" data-anchor-id="summary-and-take-aways">Summary and Take-Aways</h2>
+<p>Visualizing data is almost always the best way to gain a grasp on data. Looking at the raw data for AQI values in Santa Barbara would have led to seeing high numbers during the Thomas Fire, but the line plot really puts it into perspective. Overlaying the burn area is also a great way to show the impact of the fire.</p>
+<p>I think that at times, it is easy to get caught up in the data, forgetting where it all came from, so I want to briefly describe the impact of the fire that I analyzed. The Thomas Fire was the largest fire in modern California history, burning 273,400 acres over a period of 6 months <span class="citation" data-cites="thethom">(<a href="#ref-thethom" role="doc-biblioref"><span>“The Thomas Fire, the Largest Wildfire in California’s Modern History, Is Out | CNN,”</span> n.d.</a>)</span>. It was the 3rd most destructive in structure losses, destroying 1,063 buildings <span class="citation" data-cites="thethom">(<a href="#ref-thethom" role="doc-biblioref"><span>“The Thomas Fire, the Largest Wildfire in California’s Modern History, Is Out | CNN,”</span> n.d.</a>)</span>. There were many factors that led to the size of this fire, including strong Santa Ana winds that fanned the flames, and it will undoubtedly remain in the top of the charts for California fires.</p>
+
 
 
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{mcconnell2023,
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-thethom" class="csl-entry" role="listitem">
+<span>“The Thomas Fire, the Largest Wildfire in California’s Modern History, Is Out | CNN.”</span> n.d. <a href="https://www.cnn.com/2018/06/02/us/thomas-fire-officially-out/index.html">https://www.cnn.com/2018/06/02/us/thomas-fire-officially-out/index.html</a>.
+</div>
+</div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{mcconnell2023,
   author = {McConnell, Fletcher},
   title = {Plotting {AQI} and {Thomas} {Fire} {Burn} {Area} in {Santa}
     {Barbara} {County} in {Python}},
