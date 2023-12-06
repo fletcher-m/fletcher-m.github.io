@@ -9,10 +9,10 @@ author:
     affiliation-url: https://bren.ucsb.edu/masters-programs/master-environmental-data-science/academics-meds
  # - name: other person
 date: 12-01-2023
-categories: [Quarto, MEDS, Workshop]
+categories: [Quarto, MEDS, Fire, Visualization]
 bibliography: references.bib
 citation:
-  url: https://fletcher-m.github.io/blog/2023-10-23-my-first-post/
+  url: https://fletcher-m.github.io/blog/2023-12-01-eds220-final-project/
 #image: ocean_data_image.jpeg
 # draft: true --> This setting will not show your blog post on your website but you can still see from url
 eval: FALSE
@@ -82,7 +82,7 @@ bands[['swir22', 'nir08', 'red']].to_array().plot.imshow(robust=True)
 
 ![](images/false_image.png)
 
-In order to find the burn area for the Thomas Fire (2017), I had to do some filtering of the fire data
+In order to find the burn area for the Thomas Fire (2017), I had to do some filtering of the fire data so that I ended up with only data about the Thomas Fire.
 
 ```{python}
 #| code-fold: true
