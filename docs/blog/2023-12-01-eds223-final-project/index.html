@@ -133,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Resume/FletcherMcConnell_Resume.pdf" rel="" target="">
+    <a class="nav-link" href="../../Resume/fletcher_mcconnell_resume.pdf" rel="" target="">
  <span class="menu-text">Resume</span></a>
   </li>  
 </ul>
@@ -173,7 +173,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                           <div class="quarto-categories">
                 <div class="quarto-category">Quarto</div>
                 <div class="quarto-category">MEDS</div>
-                <div class="quarto-category">Workshop</div>
+                <div class="quarto-category">Ocean</div>
+                <div class="quarto-category">Visualization</div>
               </div>
                   </div>
   </div>
@@ -223,6 +224,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#setting-raster-values-to-align-with-temperature-and-depth-parameters" id="toc-setting-raster-values-to-align-with-temperature-and-depth-parameters" class="nav-link" data-scroll-target="#setting-raster-values-to-align-with-temperature-and-depth-parameters">Setting Raster Values to Align with Temperature and Depth Parameters</a></li>
   <li><a href="#overlaying-suitable-area-with-eez-regions" id="toc-overlaying-suitable-area-with-eez-regions" class="nav-link" data-scroll-target="#overlaying-suitable-area-with-eez-regions">Overlaying Suitable Area with EEZ Regions</a></li>
   </ul></li>
+  <li><a href="#takeaways-from-this-analysis" id="toc-takeaways-from-this-analysis" class="nav-link" data-scroll-target="#takeaways-from-this-analysis">Takeaways From This Analysis</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   </ul>
 </nav>
     </div>
@@ -237,6 +240,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Author: Fletcher McConnell</p>
 <p>First, I loaded all of the packages needed for this analysis:</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
@@ -247,6 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="finding-suitable-habitat-for-oysters-along-the-california-coast" class="level2">
@@ -255,6 +261,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="data-wrangling">Data Wrangling</h3>
 <p>First, I was interested in what portions of Califonia’s coastline would be suitable for Oysters. They have an ideal depth range of 0 to 70 meters and ideal temperature range of 11 to 30 degrees Celsius. In order to find where these parameters are met, I used data of annual sea surface temperatures from 2008 to 2012 and then also used bathymetry data of the ocean. These first series of steps involve me doing a bit of data wrangling and making sure that I would be able to stack my depth raster with my temperature raster. I had previously combined all 4 years of temperature data into a raster stack ‘all_sst’.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find mean SST</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>all_sst_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(all_sst)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -269,22 +277,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># check that that depth and SST match in resolution, extent and crs (by stacking them)</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>depth_sst <span class="ot">&lt;-</span> <span class="fu">c</span>(depth, all_sst_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="setting-raster-values-to-align-with-temperature-and-depth-parameters" class="level3">
 <h3 class="anchored" data-anchor-id="setting-raster-values-to-align-with-temperature-and-depth-parameters">Setting Raster Values to Align with Temperature and Depth Parameters</h3>
 <p>After I had my depth and temperature rasters combined, I then needed to filter these rasters to the values that I wanted. As I mentioned above, Oysters like temperature between 11 and 33 degrees Celsius and do best in depths from 0 to 70 meters. After assigning these parameter values, I plotted areas along the coast that meet both of these criteria. The following is what I came up with:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set range for habitable oyster depth</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>depth_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">70</span>, <span class="dv">0</span>, <span class="dv">1</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                    <span class="sc">-</span><span class="cn">Inf</span>, <span class="sc">-</span><span class="dv">70</span>, <span class="cn">NA</span>, <span class="dv">0</span>, <span class="cn">Inf</span>, <span class="cn">NA</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">byrow =</span> <span class="cn">TRUE</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>depth_sst <span class="ot">&lt;-</span> <span class="fu">classify</span>(depth, depth_matrix)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># set habitable range for oyster temperature</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>temp_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">30</span>, <span class="dv">1</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                        <span class="sc">-</span><span class="cn">Inf</span>, <span class="dv">11</span>, <span class="cn">NA</span>, <span class="dv">30</span>, <span class="cn">Inf</span>, <span class="cn">NA</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">byrow =</span> <span class="cn">TRUE</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>temp_sst <span class="ot">&lt;-</span> <span class="fu">classify</span>(all_sst_mean, temp_matrix)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ocean <span class="ot">&lt;-</span> <span class="fu">stack</span>(<span class="at">x =</span> <span class="fu">c</span>(depth_sst, temp_sst))</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># find habitat that satisfies both temp range and depth range</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>function_1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(x <span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> y <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="cn">NA</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>suitable_habitat <span class="ot">&lt;-</span> <span class="fu">lapp</span>(<span class="fu">rast</span>(ocean), <span class="at">fun =</span> function_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p><img src="temp_depth.png" class="img-fluid"></p>
 <p>The above plot shows the California coastline. In this plot, I have set values within temperature and depth parameters equal to “1” and combined both rasters. The colored regions represent areas that are within both of the specified depth and temperature regions.</p>
 </section>
 <section id="overlaying-suitable-area-with-eez-regions" class="level3">
 <h3 class="anchored" data-anchor-id="overlaying-suitable-area-with-eez-regions">Overlaying Suitable Area with EEZ Regions</h3>
-<p>Now that I had the area designated for suitable habitat for oysters, I wanted to explore which of the 5 EEZ regions along the west coast contained the most potential for oyster fishing. In order to do this, I needed to find the total suitable area within each EEZ region. Below is a plot showing each of the 5 regions and their corresponding total areas.</p>
+<p>Now that I had the area designated for suitable habitat for oysters, I wanted to explore which of the 5 EEZ regions along the west coast contained the most potential for oyster fishing. In order to do this, I needed to find the total suitable area within each EEZ region. Below is a plot showing each of the 5 regions and their corresponding total areas. The regions from North to South are Washington, Oregon, Northern California, Central California and Southern California.</p>
 <p><img src="eez_regions.png" class="img-fluid"></p>
-<p>As you can see, by comparing this plot with the one above, all of the EEZ regions contain at least some suitable oyster habitat. Now, I needed to find out just how much area there was in each region.</p>
-
-
+<p>As you can see, by comparing the plot above with plot showing suitable habitat, all of the EEZ regions contain at least some suitable oyster habitat. Now, I wanted to find out just how much suitable area there was in each region. This way, I would be able to rank each region in terms of potential for oyster farming. This next code section accomplishes exactly that.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert eez data into raster format</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>wc_eez_raster <span class="ot">&lt;-</span> <span class="fu">rasterize</span>(wc_eez, depth, <span class="at">field =</span> <span class="st">"rgn"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># find area of suitable habitat within each eez</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>area <span class="ot">&lt;-</span> <span class="fu">expanse</span>(suitable_habitat, <span class="at">unit =</span> <span class="st">"km"</span>, <span class="at">zones =</span> wc_eez_raster)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># join calculate percent of suitable habitat and join back with eez data</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>total_suitable_area <span class="ot">&lt;-</span> <span class="fu">merge</span>(wc_eez, area,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">by.x =</span> <span class="st">"rgn"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">by.y =</span> <span class="st">"zone"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">all.x =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p_area =</span> (area<span class="sc">/</span>area_km2) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>total_suitable_area</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><img src="images/area_output.png" class="img-fluid"></p>
+<p>The above is an output after I joined the amount of suitable area (“area”) and percent of total area (“p_area”) to the original EEZ data frame. This is the output that I was looking for. The step left was to visualize the results in order to gain a clearer picture. This first plot represents the total suitable area of each region.</p>
+<p><img src="images/eez_area.png" class="img-fluid"></p>
+<p>As you can see, Central California had the most suitable area and Northern California had the least. Now, I will compare this with the percentage of suitable area within each region.</p>
+<p><img src="images/eez_percent-01.png" class="img-fluid"></p>
+<p>This plot gives a bit of a different perspective, because it takes into account the size of each region. Washington ranks first with with the percent of area because it has a comparably smaller total area than the rest of the regions. Oregon and Northern California are the only two regions whose ranking remains unchanged in this second plot, ranking second lowest and lowest, respectively.</p>
 </section>
+</section>
+<section id="takeaways-from-this-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="takeaways-from-this-analysis">Takeaways From This Analysis</h2>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+
+
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{mcconnell2023,
@@ -292,12 +358,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   title = {Determining {Suitable} {Habitat} for {Oysters} Within {EEZ}
     Regions of {California}},
   date = {2023-12-01},
-  url = {https://fletcher-m.github.io/blog/2023-10-23-my-first-post/},
+  url = {https://fletcher-m.github.io/blog/2023-12-01-eds223-final-project/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-mcconnell2023" class="csl-entry quarto-appendix-citeas" role="listitem">
 McConnell, Fletcher. 2023. <span>“Determining Suitable Habitat for
-Oysters Within EEZ Regions of California.”</span> December 1, 2023. <a href="https://fletcher-m.github.io/blog/2023-10-23-my-first-post/">https://fletcher-m.github.io/blog/2023-10-23-my-first-post/</a>.
+Oysters Within EEZ Regions of California.”</span> December 1, 2023. <a href="https://fletcher-m.github.io/blog/2023-12-01-eds223-final-project/">https://fletcher-m.github.io/blog/2023-12-01-eds223-final-project/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
