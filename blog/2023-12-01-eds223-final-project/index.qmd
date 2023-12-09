@@ -22,7 +22,11 @@ eval: FALSE
 
 Author: Fletcher McConnell
 
-First, I loaded all of the packages needed for this analysis:
+Github Reopository: https://github.com/fletcher-m/oyster-habitat
+
+The idea of this analysis was to map areas that are suitable to oysters (based on depth and temperature parameters) and then find out which of the west coast economic exclusive zones (EEZ's) has the greatest potential for oyster fishing, based on total suitable area within each zone.
+
+Below are the packages that I used in my analysis:
 
 ```{r, results='hide'}
 #| code-fold: true
@@ -134,6 +138,68 @@ As you can see, Central California had the most suitable area and Northern Calif
 
 This plot gives a bit of a different perspective, because it takes into account the size of each region. Washington ranks first with with the percent of area because it has a comparably smaller total area than the rest of the regions. Oregon and Northern California are the only two regions whose ranking remains unchanged in this second plot, ranking second lowest and lowest, respectively.
 
-## Takeaways From This Analysis
+## Generalizing the Process for Other Species
 
-##   
+After completing the analysis for oysters, I wanted to create a more general process to map areas for other species. In order to accomplish this, I wrote a function that follows the same basic process that I used above, using the same temperature and depth data. This function accepts the species, minimum depth, maximum depth, minimum temperature and maximum temperature as inputs and generates an area plot as well as a percentage of total EEZ area plot. Below, you can see the function that I created and an example of using the function for Skip jack Tuna.
+
+```{r}
+#| code-fold: true
+# create general function for other species
+species_range_function <- function(species, min_depth, max_depth, min_temp, max_temp) {
+  
+  depth_input <- matrix(c(max_depth, min_depth, 1,
+                    -Inf, max_depth, NA, min_depth, Inf, NA),
+                    byrow = TRUE, ncol = 3)
+  
+  depth_classify <- classify(depth, depth_input)
+  
+  temp_input <- matrix(c(min_temp, max_temp, 1,
+                        -Inf, min_temp, NA, max_temp, Inf, NA),
+                      byrow = TRUE, ncol = 3)
+  
+  temp_classify <- classify(all_sst_mean, temp_input)
+  
+  depth_temp_stack <- stack(x = c(depth_classify, temp_classify))
+  
+  ocean_function <- function(x, y){
+  ifelse(x == 1 & y == 1, 1, NA)
+}
+  oyster_habitat <- lapp(rast(depth_temp_stack), fun = ocean_function)
+  
+  eez_raster <- rasterize(wc_eez, depth, field = "rgn") # not sure about this one
+  
+  oyster_area <- expanse(oyster_habitat, unit = "km", zones = eez_raster)
+  
+  joined_data <<- merge(wc_eez, oyster_area,
+      by.x = "rgn",
+      by.y = "zone",
+      all.x = TRUE) |> 
+  mutate(p_area = (area/area_km2) * 100)
+  
+  fish_area_plot <- ggplot(joined_data) +
+    geom_sf(aes(fill = area)) +
+    scale_fill_viridis_c() + 
+    labs(title = paste("Area of Suitable", species, "Habitat in EEZ Regions"), fill = "Area (km^2)")
+  
+  print(fish_area_plot)
+  
+  fish_percent_plot <- ggplot(joined_data) +
+    geom_sf(aes(fill = p_area)) +
+    scale_fill_viridis_c() + 
+    labs(title = paste("Percent of Suitable", species, "Habitat of EEZ Regions"), fill = "Percent of Total Area")
+  
+  print(fish_percent_plot)
+}
+```
+
+```{r}
+#| code-fold: true
+# apply created function to Skipjack Tuna
+species_range_function("Skipjack Tuna", 0, -260, 10, 21)
+```
+
+![](images/skpjack_area.png)
+
+![](images/skpjack_percent.png)
+
+As you can see, the function created new plots that are based on the new temperature and depth parameters that are related to the Skipjack Tuna. This will be able to accept any values that are input, as long as they are included in the original temperature and depth data used.

@@ -224,8 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#setting-raster-values-to-align-with-temperature-and-depth-parameters" id="toc-setting-raster-values-to-align-with-temperature-and-depth-parameters" class="nav-link" data-scroll-target="#setting-raster-values-to-align-with-temperature-and-depth-parameters">Setting Raster Values to Align with Temperature and Depth Parameters</a></li>
   <li><a href="#overlaying-suitable-area-with-eez-regions" id="toc-overlaying-suitable-area-with-eez-regions" class="nav-link" data-scroll-target="#overlaying-suitable-area-with-eez-regions">Overlaying Suitable Area with EEZ Regions</a></li>
   </ul></li>
-  <li><a href="#takeaways-from-this-analysis" id="toc-takeaways-from-this-analysis" class="nav-link" data-scroll-target="#takeaways-from-this-analysis">Takeaways From This Analysis</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#generalizing-the-process-for-other-species" id="toc-generalizing-the-process-for-other-species" class="nav-link" data-scroll-target="#generalizing-the-process-for-other-species">Generalizing the Process for Other Species</a></li>
   </ul>
 </nav>
     </div>
@@ -238,7 +237,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="finding-suitable-habitat-for-oysters-in-california-eez-boundaries" class="level2">
 <h2 class="anchored" data-anchor-id="finding-suitable-habitat-for-oysters-in-california-eez-boundaries">Finding Suitable Habitat for Oysters in California EEZ Boundaries</h2>
 <p>Author: Fletcher McConnell</p>
-<p>First, I loaded all of the packages needed for this analysis:</p>
+<p>Github Reopository: https://github.com/fletcher-m/oyster-habitat</p>
+<p>The idea of this analysis was to map areas that are suitable to oysters (based on depth and temperature parameters) and then find out which of the west coast economic exclusive zones (EEZ’s) has the greatest potential for oyster fishing, based on total suitable area within each zone.</p>
+<p>Below are the packages that I used in my analysis:</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -344,11 +345,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This plot gives a bit of a different perspective, because it takes into account the size of each region. Washington ranks first with with the percent of area because it has a comparably smaller total area than the rest of the regions. Oregon and Northern California are the only two regions whose ranking remains unchanged in this second plot, ranking second lowest and lowest, respectively.</p>
 </section>
 </section>
-<section id="takeaways-from-this-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="takeaways-from-this-analysis">Takeaways From This Analysis</h2>
-</section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="generalizing-the-process-for-other-species" class="level2">
+<h2 class="anchored" data-anchor-id="generalizing-the-process-for-other-species">Generalizing the Process for Other Species</h2>
+<p>After completing the analysis for oysters, I wanted to create a more general process to map areas for other species. In order to accomplish this, I wrote a function that follows the same basic process that I used above, using the same temperature and depth data. This function accepts the species, minimum depth, maximum depth, minimum temperature and maximum temperature as inputs and generates an area plot as well as a percentage of total EEZ area plot. Below, you can see the function that I created and an example of using the function for Skip jack Tuna.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create general function for other species</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>species_range_function <span class="ot">&lt;-</span> <span class="cf">function</span>(species, min_depth, max_depth, min_temp, max_temp) {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  depth_input <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(max_depth, min_depth, <span class="dv">1</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                    <span class="sc">-</span><span class="cn">Inf</span>, max_depth, <span class="cn">NA</span>, min_depth, <span class="cn">Inf</span>, <span class="cn">NA</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">byrow =</span> <span class="cn">TRUE</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  depth_classify <span class="ot">&lt;-</span> <span class="fu">classify</span>(depth, depth_input)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  temp_input <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(min_temp, max_temp, <span class="dv">1</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                        <span class="sc">-</span><span class="cn">Inf</span>, min_temp, <span class="cn">NA</span>, max_temp, <span class="cn">Inf</span>, <span class="cn">NA</span>),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">byrow =</span> <span class="cn">TRUE</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  temp_classify <span class="ot">&lt;-</span> <span class="fu">classify</span>(all_sst_mean, temp_input)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  depth_temp_stack <span class="ot">&lt;-</span> <span class="fu">stack</span>(<span class="at">x =</span> <span class="fu">c</span>(depth_classify, temp_classify))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  ocean_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> y <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="cn">NA</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  oyster_habitat <span class="ot">&lt;-</span> <span class="fu">lapp</span>(<span class="fu">rast</span>(depth_temp_stack), <span class="at">fun =</span> ocean_function)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  eez_raster <span class="ot">&lt;-</span> <span class="fu">rasterize</span>(wc_eez, depth, <span class="at">field =</span> <span class="st">"rgn"</span>) <span class="co"># not sure about this one</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  oyster_area <span class="ot">&lt;-</span> <span class="fu">expanse</span>(oyster_habitat, <span class="at">unit =</span> <span class="st">"km"</span>, <span class="at">zones =</span> eez_raster)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  joined_data <span class="ot">&lt;&lt;-</span> <span class="fu">merge</span>(wc_eez, oyster_area,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">by.x =</span> <span class="st">"rgn"</span>,</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">by.y =</span> <span class="st">"zone"</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">all.x =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p_area =</span> (area<span class="sc">/</span>area_km2) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  fish_area_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(joined_data) <span class="sc">+</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> area)) <span class="sc">+</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> </span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Area of Suitable"</span>, species, <span class="st">"Habitat in EEZ Regions"</span>), <span class="at">fill =</span> <span class="st">"Area (km^2)"</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(fish_area_plot)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  fish_percent_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(joined_data) <span class="sc">+</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> p_area)) <span class="sc">+</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> </span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Percent of Suitable"</span>, species, <span class="st">"Habitat of EEZ Regions"</span>), <span class="at">fill =</span> <span class="st">"Percent of Total Area"</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(fish_percent_plot)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># apply created function to Skipjack Tuna</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">species_range_function</span>(<span class="st">"Skipjack Tuna"</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">260</span>, <span class="dv">10</span>, <span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><img src="images/skpjack_area.png" class="img-fluid"></p>
+<p><img src="images/skpjack_percent.png" class="img-fluid"></p>
+<p>As you can see, the function created new plots that are based on the new temperature and depth parameters that are related to the Skipjack Tuna. This will be able to accept any values that are input, as long as they are included in the original temperature and depth data used.</p>
 
 
 </section>
