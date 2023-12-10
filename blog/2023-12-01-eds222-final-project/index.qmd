@@ -12,7 +12,8 @@ date: 12-01-2023
 categories: [Quarto, MEDS, Workshop]
 bibliography: references.bib
 citation:
-  url: https://fletcher-m.github.io/blog/2023-10-23-my-first-post/
+  url: https://fletcher-m.github.io/blog/2023-12-01-eds222-final-project/
+image: airplane.jpeg
 #image: ocean_data_image.jpeg
 # draft: true --> This setting will not show your blog post on your website but you can still see from url
 ---

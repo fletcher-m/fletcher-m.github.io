@@ -13,6 +13,7 @@ categories: [Quarto, MEDS, Ocean, Visualization]
 bibliography: references.bib
 citation:
   url: https://fletcher-m.github.io/blog/2023-12-01-eds223-final-project/
+image: oysters.jpeg
 #image: ocean_data_image.jpeg
 # draft: true --> This setting will not show your blog post on your website but you can still see from url
 eval: FALSE
