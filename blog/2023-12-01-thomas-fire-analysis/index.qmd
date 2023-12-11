@@ -12,7 +12,7 @@ date: 12-01-2023
 categories: [Quarto, MEDS, Fire, Visualization]
 bibliography: references.bib
 citation:
-  url: https://fletcher-m.github.io/blog/2023-12-01-eds220-final-project/
+  url: https://fletcher-m.github.io/blog/2023-12-01-thomas-fire-analysis/
 image: download.jpeg
 #image: ocean_data_image.jpeg
 # draft: true --> This setting will not show your blog post on your website but you can still see from url

@@ -1,6 +1,6 @@
 ---
-title: "EDS 222 Final Project"
-description: "This is the final project for eds 222"
+title: "Airplane Crash Statistical Analyis"
+description: "In this blog, I analyze various aspects of airplane crashes, using a a dataset that logs crashes from 1908 to 2009"
 author:
   - name: Fletcher McConnell
     url: https://fletcher-m.github.io/
