@@ -141,7 +141,7 @@ This plot gives a bit of a different perspective, because it takes into account 
 
 ## Generalizing the Process for Other Species
 
-After completing the analysis for oysters, I wanted to create a more general process to map areas for other species. In order to accomplish this, I wrote a function that follows the same basic process that I used above, using the same temperature and depth data. This function accepts the species, minimum depth, maximum depth, minimum temperature and maximum temperature as inputs and generates an area plot as well as a percentage of total EEZ area plot. Below, you can see the function that I created and an example of using the function for Skip jack Tuna.
+After completing the analysis for oysters, I wanted to create a more general process to map areas for other species. In order to accomplish this, I wrote a function that follows the same basic process that I used above, using the same temperature and depth data. This function accepts the species, minimum depth, maximum depth, minimum temperature and maximum temperature as inputs and generates an area plot as well as a percentage of total EEZ area plot. Below, you can see the function that I created and an example of using the function for Skip jack Tuna. For the Skipjack Tuna, I input the depth range from 0 to 260 meters (-260 to represent below sea level) and the temperature range from 10 to 21 degrees Celsius.
 
 ```{r}
 #| code-fold: true
