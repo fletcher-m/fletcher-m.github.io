@@ -23,7 +23,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -129,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
+    <div class="quarto-title column-page-left">
       <h1 class="title">Airplane Crash Statistical Analyis</h1>
                   <div>
         <div class="description">
@@ -177,28 +230,162 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#analysis-of-airplane-crash-statistics-from-1908-to-2009" id="toc-analysis-of-airplane-crash-statistics-from-1908-to-2009" class="nav-link active" data-scroll-target="#analysis-of-airplane-crash-statistics-from-1908-to-2009">Analysis of Airplane Crash Statistics from 1908 to 2009</a></li>
+  <li><a href="#overall-conclusion" id="toc-overall-conclusion" class="nav-link" data-scroll-target="#overall-conclusion">Overall Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
 
 
 
+<section id="analysis-of-airplane-crash-statistics-from-1908-to-2009" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-of-airplane-crash-statistics-from-1908-to-2009">Analysis of Airplane Crash Statistics from 1908 to 2009</h2>
+<p>Author: Fletcher McConnell</p>
+<p>GitHub Repository: https://github.com/fletcher-m/airplane_crashes</p>
+<p>Data: Airplane Crashes Since 1908. (n.d.). Retrieved December 12, 2023, from https://www.kaggle.com/datasets/saurograndi/airplane-crashes-since-1908</p>
+<p>As I was looking around at different data sets that I might be able to perform some statistical analysis on, I came across a set that cataloged airplane crashes from 09/17/1908 to 06/08/2009. Although the information was a bit more morbid than I had anticipated, I thought it contained some interesting potential for analysis. I ended up going down a couple of different paths with this data but the main question that I wanted to answer was if there are any discernible patterns in the the airplane crashes. I specifically wanted to check for a seasonality component having to do with the months of the year and also check for patterns in the time of day that the crashes occurred. If you would like to see the complete code for all of my steps, please refer to the GitHub Repository where that is stored (link above).</p>
+<p>This is what the dataset that I used looked like:</p>
+<p><img src="images/airplane_data.png" class="img-fluid"></p>
+<p>The main aspect of this data that I liked was the “Date” and “Time” columns. I wanted to perform some sort of time series analysis on this. I was curious if there are any seasonal trends that can be pulled out of this data. It would be interesting to know if certain times of year are more likely for a plane crash than others. I started by making some exploratory plots to see if anything interesting stood out. During this analysis, I used these packages:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lterdatasampler)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tsibble)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(feasts)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fable)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>First, I wanted to plot the number of crashes per year to get an idea of the general trend. This is what it looked like:</p>
+<p><img src="images/airplane_1.png" class="img-fluid"></p>
+<p>Next, I wanted to see how the number of crashes corresponded to the different months within the year. Maybe there was some sort of cycle that I could analyze later on:</p>
+<p><img src="images/plane_2.png" class="img-fluid"></p>
+<p>I also plotted the average number of fatalities per year and compared that to the total number of crashes per year. My goal here was to see if there were any areas that had large discrepancies. It didn’t look like there were any and they followed a similar trend, which would be expected:</p>
+<p><img src="images/plane_4.png" class="img-fluid"></p>
+<p>After looking at these preliminary graphs, I decided to continue with my original idea of performing a time series analysis to see if there were any seasonal trends. I had to do a bit of data wrangling here in order to get it into the correct format to perform a decomposition analysis.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>airplane_crashes_2 <span class="ot">&lt;-</span> airplane_crashes <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Year, <span class="sc">-</span>NumCrashesMonth, <span class="sc">-</span>Month, <span class="sc">-</span>NumCrashesYear)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>airplane_crashes_2 <span class="ot">&lt;-</span> airplane_crashes_2 <span class="sc">|&gt;</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">yr_mo =</span> <span class="fu">yearmonth</span>(Date)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yr_mo) <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_crashes =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> yr_mo)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>airplane_crashes_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autoplot</span>(avg_crashes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>airplane_crashes_2 <span class="ot">&lt;-</span> airplane_crashes_2 <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> yr_mo)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>airplane_crashes_2 <span class="ot">&lt;-</span> <span class="fu">fill_gaps</span>(airplane_crashes_2)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>airplane_crashes_2 <span class="ot">&lt;-</span> airplane_crashes_2 <span class="sc">|&gt;</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">avg_crashes =</span> <span class="fu">na.approx</span>(avg_crashes))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>dcmp <span class="ot">&lt;-</span> airplane_crashes_2 <span class="sc">|&gt;</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="fu">STL</span>(avg_crashes))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">components</span>(dcmp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><img src="images/plane_6.png" class="img-fluid"></p>
+<p>After looking at the decomposition, it looked like the seasonal component plays a very small part in the data. I then plotted an ACF plot to visualize this a little bit differently.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(airplane_crashes_2<span class="sc">$</span>avg_crashes, <span class="at">lag.max=</span><span class="dv">36</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><img src="images/plane_7.png" class="img-fluid"></p>
+<p>As you can see, each month is correlated with every other month in essentially that same capacity, meaning there is no evidence for a seasonal trend. If there was a seasonal trend, I would expect more of a split between positive and negative correlation occurring every 6 lags or so (half a year).</p>
+<p>Even though there was not evidence of a seasonal trend, I was still curious about whether there were any daily patterns in crashes. Maybe more crashes occur during one time of day and not another. I made another ACF plot to show this relationship. To make this plot, I found the average number of crashes during each hour of the day across the whole time period of the data.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(airplane_crash_time<span class="sc">$</span>avg_crashes, <span class="at">lag.max=</span><span class="dv">24</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><img src="images/plane_9.png" class="img-fluid"></p>
+<p>There is some seasonality within the time of the day but most of the correlations are withing the 95% confidence interval and, so, are not statistically significant. I compared this with a plot of the number of average number of crashes during each hour of the day and it is as one would expect. There are more crashes from about 8 am to 8pm than the rest of the day. This can be explained because this is the period of time when the most flights are occurring.</p>
+<p>After finding out that there aren’t seasonal patterns in this data, I decided to switch from time series into a little bit of regression analysis. I wanted to find out if the proportion of fatalities (to total on board) decreased at all as the years progressed. My thinking behind this was that airplane safety improved with better technology and pilot training improved as well. So, the crashes that did occur might not have been as fatal as earlier flights. The following plot shows the average proportion of fatalities per year.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>airplane_fatal <span class="ot">&lt;-</span> airplane_crashes <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">AvgPropFatal =</span> <span class="fu">mean</span>(Fatalities<span class="sc">/</span>Aboard, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">&gt;=</span> <span class="dv">1919</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(airplane_fatal, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> AvgPropFatal)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Average Proportion of Fatalities Per Year"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Proportion Fatal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><img src="images/plane_10.png" class="img-fluid"></p>
+<p>Just from looking at this data, it seems like there is a downward trend. I ran a linear regression model to gain a bit more insight.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(AvgPropFatal <span class="sc">~</span> Year, <span class="at">data =</span> airplane_fatal)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The results showed a slight, although statistically significant trend downward. With every year of change, the fatality proportion decreases by -0.001. It is very small but still is an interesting insight. It is important to mention that the R squared value was 0.30, which indicates that the year only is able explain 30 % of the decline in the proportion of fatality. There could be so many other factors at play here and I was a bit limited with the data that I had. I decided to test one small piece, and that was to include whether or not a plane was a military plane. I ran another linear regression model including this additional variable.</p>
+<p>After running this, in an attempt to try to add in another variable that could help explain the data, I added a dummy variable “IsMilitary”. This was taken from a column that had either a value of 1 (military plane) or 0 (non-military plane). After adding this variable into the regression model, the R squared value increased from 0.0036 to 0.022. This increase is so small, but still an interesting finding.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(PropFatal <span class="sc">~</span> DaysSinceStart <span class="sc">+</span> IsMilitary, <span class="at">data =</span> airplane_military)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="overall-conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="overall-conclusion">Overall Conclusion</h2>
+<p>Although I didn’t find any conclusive evidence of trends, the data set was limited in some ways. It was not a complete list of all plane crashes. I confirmed this by looking up some major crashes and seeing that they were not displayed in the data. There are so many variables that contribute to whether a plan crashes or not, and many of these are uncontrollable like bird strikes <span class="citation" data-cites="winston">(<a href="#ref-winston" role="doc-biblioref">Winston, n.d.</a>)</span>. The time of year / day does not have much impact but there might be cycles occurring over longer time periods (decades). I found that I was limited by the data in the way that it was organized. I would have liked to group by airplane size but this was not noted. I would have also liked to do some analysis on the regions where each crash occurred. There was no standard way that the location data was input, so it would be very difficult to filter for this.</p>
+<p>Although it looks like there are a lot of plane crash incidents from this data, modern plane crashes are incredibly rare. If you ever want to reassure yourself, check out a website that shows all of the planes that are currently in flight and see just how many successful flights there are.</p>
 
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{mcconnell2023,
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-winston" class="csl-entry" role="listitem">
+Winston, Aaron R. n.d. <span>“In-Depth Analysis of Factors Responsible for Plane Crashes.”</span> <a href="https://expresslegalfunding.com/factors-responsible-plane-crashes/">https://expresslegalfunding.com/factors-responsible-plane-crashes/</a>.
+</div>
+</div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{mcconnell2023,
   author = {McConnell, Fletcher},
   title = {Airplane {Crash} {Statistical} {Analyis}},
   date = {2023-12-01},
-  url = {https://fletcher-m.github.io/blog/2023-12-01-eds222-final-project/},
+  url = {https://fletcher-m.github.io/blog/2023-12-01-airplane-crash-analysis/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-mcconnell2023" class="csl-entry quarto-appendix-citeas" role="listitem">
 McConnell, Fletcher. 2023. <span>“Airplane Crash Statistical
-Analyis.”</span> December 1, 2023. <a href="https://fletcher-m.github.io/blog/2023-12-01-eds222-final-project/">https://fletcher-m.github.io/blog/2023-12-01-eds222-final-project/</a>.
+Analyis.”</span> December 1, 2023. <a href="https://fletcher-m.github.io/blog/2023-12-01-airplane-crash-analysis/">https://fletcher-m.github.io/blog/2023-12-01-airplane-crash-analysis/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
