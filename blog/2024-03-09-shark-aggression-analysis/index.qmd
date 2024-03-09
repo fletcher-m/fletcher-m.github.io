@@ -287,6 +287,7 @@ You can see from this plot, that the number of annual attacks drastically increa
 
 In order to combine these plots in a fun, educational and engaging way, I created an infographic to display the plots. This infographic explains the overarching question of "Which ocean activities are most likely to encounter an aggressive shark incident?". 
 
+![](shark_poster.png)
 
 
 
