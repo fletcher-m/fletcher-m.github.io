@@ -281,7 +281,11 @@ p + geom_vline(xintercept = 1959, linetype = "dashed", color = "red") +
 ```
 
 ![](line_plot.png)
-You can see from this plot, that number of annual attacks drastically increased starting in the 1960's. As I mentioned above, this is likely due to the growing popularity of the sport. More people in the water surfing carries a higher likelihood of an incedent. I also noted when the film Gidget came out in 1959. This movie introduced Hollywood's first surfing star and pulled surfing into the mainstream culture. 
+You can see from this plot, that the number of annual attacks drastically increased starting in the 1960's. As I mentioned above, this is likely due to the growing popularity of the sport. More people in the water surfing carries a higher likelihood of an incident. I also noted when the film Gidget came out in 1959. This movie introduced Hollywood's first surfing movie star and pulled surfing into the mainstream culture. 
+
+# Infographic
+
+In order to combine these plots in a fun, educational and engaging way, I created an infographic to display the plots. This infographic explains the overarching question of "Which ocean activities are most likely to encounter an aggressive shark incident?". 
 
 
 
