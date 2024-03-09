@@ -1,5 +1,5 @@
 ---
-title: "Analyzing Which Ocean Activities Are Most Likely to Encounter Aggressive Shark Behavior "
+title: "Analyzing Which Ocean Activities Are Most Likely to Involve Aggressive Shark Behavior "
 description: "This is an analysis that conducted, where I looked at data containing accounts of aggressive shark behavior across the globe going all the way back to 1638 through 2023. I wanted to find out which activities people were doing when a shark became aggressive towards them."
 author:
   - name: Fletcher McConnell
@@ -19,11 +19,34 @@ eval: FALSE
 
 # Motivation Behind this Analysis
 
-I have been around the ocean for the majority of my life and have enjoyed having fun riding waves or exploring beneath them. I have swam with sharks many times and it has always been a positive experience for me. Ever since the first Jaws movie came out, sharks have been perceived as a killing machine, with a blood lust that can only be appeased by taking human lives. In reality, this is so far from the truth. Sharks are incredible animals and on the rare occasions where they do have a negative interaction with humans, it is often a mistake on the shark's part. I wanted to display the data to pull away the curtain of uncertainty on where sharks act aggressively. I hope that this post is informative and not scary. 
+I have been around the ocean for the majority of my life and have enjoyed having fun riding waves or exploring beneath them. I have swum with sharks many times and it has always been a positive experience for me. Ever since the first Jaws movie came out, sharks have been perceived as a killing machine, with a blood lust that can only be appeased by taking human lives. In reality, this is so far from the truth. Sharks are incredible animals and, on the rare occasions where they do have a negative interaction with humans, it is often a mistake on the shark's part. I wanted to display the data to pull away the curtain of uncertainty on where sharks act aggressively. I hope that this post is informative and not scary. 
 
-Data Available Here: https://public.opendatasoft.com/explore/dataset/global-shark-attack/table/?flg=en-us&disjunctive.country&disjunctive.area&disjunctive.activity
+### Question
 
-* This data had many missing values in some of the columns that I used for my analysis. There were also inconsistent naming conventions within columns. I did my best to work with these abnormalities, but there is absolutely room for error in my results. 
+My overall question for this analysis was "During which ocean activities is a person most likely to experience an aggressive shark incident?". I made 3 plots that each answered a sub-question pertaining to this overall question.
+
+**spider plot** --> "Among White Sharks, Tiger Sharks and Bull Sharks, what does the relative distribution of attacks look like among my 5 defined ocean activities?" 
+
+**bar plot** --> "How do the counts of fatal and non-fatal encounters compare within each activity?"
+
+**line plot** --> "What does the trend of the number of annual attacks for surfing, in particular, look like and why might it look like this?"
+
+
+### Data
+
+The data that I used for this analysis came from the opendatasoft website and is linked below. Each row in the data frame represented a single documented aggressive shark incident. There were many columns describing aspects of the attack such as location, time of day, activity, species etc. The columns that I used for my analysis were the following:
+
+"activity" --> column denoting what the person was doing at the time of attack
+
+"species" --> column denoting the species of shark involved in the attack
+
+"year" --> column denoting which year the attack occured during
+
+"fatal_y_n" --> column denoting whether an attack was fatal (Y) or non-fatal (N)
+
+**Data Available Here:** https://public.opendatasoft.com/explore/dataset/global-shark-attack/table/?flg=en-us&disjunctive.country&disjunctive.area&disjunctive.activity
+
+* This data had many missing values in some of the columns that I used for my analysis. There were also inconsistent naming conventions within columns. I did my best to work with these abnormalities, but there is likely some amount of error in my results. 
 
 # The Analysis Process
 
@@ -51,7 +74,7 @@ library(ggtext)
 library(glue)
 ```
 
-I created three types of visualizations for this analysis. Each visualization is tied with one another, through looking at different aspects of the 5 activities mentioned above.
+I created three types of visualizations for this analysis. Each visualization is tied with one another, with the end goal of having all 3 within an infographic. 
 
 # Spider Plot 
 
@@ -61,6 +84,7 @@ For the spider plot, I wanted to visualize the 3 most commonly known aggressive 
 
 ```{r}
 #| code-fold: true
+# count the number of Tiger Shark attacks for each activity
 sum(grepl("tiger shark", sharks$species, ignore.case = TRUE) & grepl("fishing", sharks$activity, ignore.case = TRUE))
 
 sum(grepl("tiger shark", sharks$species, ignore.case = TRUE) & grepl("surfing|paddle boarding|body boarding", sharks$activity, ignore.case = TRUE))
@@ -76,6 +100,7 @@ sum(grepl("tiger shark", sharks$species, ignore.case = TRUE) & grepl("swimming",
 
 ```{r}
 #| code-fold: true
+# count the number of White Shark attacks for each activity
 sum(grepl("white shark", sharks_spider$species, ignore.case = TRUE) & grepl("fishing", sharks_spider$activity, ignore.case = TRUE))
 
 sum(grepl("white shark", sharks_spider$species, ignore.case = TRUE) & grepl("surfing|paddle boarding|body boarding", sharks_spider$activity, ignore.case = TRUE))
@@ -91,6 +116,7 @@ sum(grepl("white shark", sharks_spider$species, ignore.case = TRUE) & grepl("swi
 
 ```{r}
 #| code-fold: true
+# count the number of Bull Shark attacks for each activity
 sum(grepl("bull shark", sharks_spider$species, ignore.case = TRUE) & grepl("fishing", sharks_spider$activity, ignore.case = TRUE))
 
 sum(grepl("bull shark", sharks_spider$species, ignore.case = TRUE) & grepl("surfing|paddle boarding|body boarding", sharks_spider$activity, ignore.case = TRUE))
@@ -102,7 +128,7 @@ sum(grepl("bull shark", sharks_spider$species, ignore.case = TRUE) & grepl("stan
 sum(grepl("bull shark", sharks_spider$species, ignore.case = TRUE) & grepl("swimming", sharks_spider$activity, ignore.case = TRUE))
 ```
 
-I then used the values calculated for each of the three species of sharks to construct a spider plot in order to visualize differences among species. 
+I then used the values calculated for each of the three species of sharks to construct a spider plot in order to visualize differences among species. For this plot, my goal was to represent general differences among the 3 species that I chose. I used solid black, dashed red and dotted blue for each separate species. This way, it is colorblind friendly and easy to separate each line from one another. I had started with rings within the spider plot that would represent particular values, however, I chose to remove these in order to simplify the plot. Since I am using relative amounts, values are not necessary and might prove to be more of a distraction than anything. I also chose to add a caption on the bottom with the total number of attacks among all activities for each species. I think that it is important to highlight that not all 3 species have the same number of attacks.    
 
 ```{r}
 #| code-fold: true
@@ -159,7 +185,7 @@ This visualization gives some interesting insight into how these three species d
 
 # Stacked Bar Plot
 
-I next thought that it would be useful to know what the number of fatal vs. non-fatal attacks looks like for each of the 5 activities. I decided to use a stacked bar plot to show this. A note is that I added the pictures next to each bar outside of R. The code produced labels (surfing, fishing, swimming, diving, wading) next to each bar. 
+I next thought that it would be useful to know what the number of fatal vs. non-fatal attacks looks like for each of the 5 activities. I decided to use a stacked bar plot to show this. A note is that I added the pictures next to each bar outside of R. The code produced labels (surfing, fishing, swimming, diving, wading) next to each bar. I wanted to make this bar plot as simple and easy to understand as possible. For the colors, I chose red for fatalities, since red makes intuitive sense to represent death. Instead of labels on the y-axis, I chose icons to represent each activity. This way, it is more engaging and requires even less effort to see what is going on. A couple of other choices were to color code the title (which allowed me to remove the legend) and place values within the bars (which allowed me to remove the axes entirely). 
 
 ```{r}
 #| code-fold: true
@@ -195,7 +221,7 @@ ggplot(activity_data, aes(x = factor(activity, levels = activity_order), y = cou
             size = 3, 
             color = "black", 
             fontface = "bold") +
-  labs(title = NULL,  # Remove the title here
+  labs(title = NULL,
        x = NULL,
        y = "Total Number of Incidents",
        caption = "* Data comes from global shark aggression cases dating back to 1638") +
@@ -210,7 +236,6 @@ ggplot(activity_data, aes(x = factor(activity, levels = activity_order), y = cou
                                   hjust = 0.5,
                                   margin = margin(b = 20)),
     axis.text.x = element_blank(),
-   # axis.text.y = element_blank(),
     plot.margin = margin(40, 70, 20, 70),
     axis.title.x = element_blank(), 
     axis.title.y = element_text(margin = margin(r = 20), hjust = 0.5),
@@ -223,31 +248,30 @@ ggplot(activity_data, aes(x = factor(activity, levels = activity_order), y = cou
 ```
 
 ![](bar_plot_final.png)
-The main idea that I pulled away from this plot is that the majority of incidents are non-fatal, although swimming has an abnormally high proportion of fatal incidents. This may be due to the fact that, when you are swimming, you do not have a surfboard or other object to block an attack. This is only one guess, however.
+The main idea that I want pulled away from this plot is that the majority of incidents are non-fatal. Swimming has an abnormally high proportion of fatal incidents. This may be due to the fact that, when you are swimming, you do not have a surfboard or other object to help block an attack. This is only one guess, however.
 
 # Line Plot 
 
-In order to introduce the time variable into a plot, I decided to use a line plot to display the yearly count of number of attacks from 1900 to 2025. I first thought that I would display all 5 activities next to each other in order to compare trends, but ultimately decided to focus on surfing. Surfing had the largest increase and I believe that it can be attributed to the growing popularity of the sport around the world. 
+In order to introduce the time variable into a plot, I decided to use a line plot to display the yearly count of number of attacks from 1900 to 2025. I first thought that I would display all 5 activities next to each other in order to compare trends, but ultimately decided to focus on surfing. Having all 5 plots next to each other is interesting but not quite the best fit for an info graphic. By highlighting the surfing trend, while leaving the other activity trends in the background, you can get a good idea of how much different surfing is. For simplicity, I only kept major horizontal grid lines, so that you can still compare values among the years. I thought that vertical grid lines might clutter the plot a bit and take away from the main point of the plot.   
 
 ```{r}
 #| code-fold: true
+# filter data for only activity surfing and after 1900
 sharks_line <- sharks |> 
   select(year, activity) |> 
-  filter(grepl("swimming|surfing|diving|fishing|standing|wading|floating", activity, ignore.case = TRUE)) |> 
+  filter(grepl("surfing", activity, ignore.case = TRUE)) |> 
   filter(year > 1900 & year < 2023) |> 
   mutate(activity_group = case_when(
-    grepl("fishing", activity, ignore.case = TRUE) ~ "Fishing",
     grepl("surfing", activity, ignore.case = TRUE) ~ "Surfing",
-    grepl("diving", activity, ignore.case = TRUE) ~ "Diving",
-    grepl("wading|standing|floating", activity, ignore.case = TRUE) ~ "Wading",
-    grepl("swimming", activity, ignore.case = TRUE) ~ "Swimming"
   ))
 
+# group by activity
 activity_counts <- sharks_line %>%
   group_by(year, activity_group) %>%
   summarize(count = n()) %>%
   ungroup()
 
+# create line plot for annual count of attacks for surfing 
 p <- ggplot(activity_counts, aes(x = year, y = count, color = activity_group)) +
   geom_line() +
   labs(
@@ -275,17 +299,18 @@ p <- ggplot(activity_counts, aes(x = year, y = count, color = activity_group)) +
     axis.title.x = element_text(margin = margin(r = 20), hjust = 0.5, vjust = 1)
 )
 
+# add vertical dashed line to denote Gidget film (1959)
 p + geom_vline(xintercept = 1959, linetype = "dashed", color = "red") +
     annotate("text", x = 1959, y = 40, 
              label = "Gidget Premiers in Theaters", vjust = -0.4, hjust = 1.1, color = "red", angle = 90)
 ```
 
 ![](line_plot.png)
-You can see from this plot, that the number of annual attacks drastically increased starting in the 1960's. As I mentioned above, this is likely due to the growing popularity of the sport. More people in the water surfing carries a higher likelihood of an incident. I also noted when the film Gidget came out in 1959. This movie introduced Hollywood's first surfing movie star and pulled surfing into the mainstream culture. 
+You can see from this plot, that the number of annual attacks drastically increased starting in the 1960's. This is likely due to the growing popularity of the sport, beginning in the 1960's. More people in the water surfing carries a higher likelihood of an incident. I also noted when the film Gidget came out in 1959. This movie introduced Hollywood's first surfing movie star and pulled surfing into the mainstream culture. 
 
 # Infographic
 
-In order to combine these plots in a fun, educational and engaging way, I created an infographic to display the plots. This infographic explains the overarching question of "Which ocean activities are most likely to encounter an aggressive shark incident?". 
+In order to combine these plots in a fun, educational and engaging way, I created an infographic to display the plots. This infographic explains the overarching question of "Which ocean activities are most likely to engage an aggressive shark?". I could have chosen a scary theme for this info graphic but decided to keep it light. I did this in order to avoid perpetuating the incorrect and over exaggerated stereotype of sharks being cold blooded killers. Although this whole piece focuses on aggressive shark incidents, I hope that the overall reaction to this is one of interest and not fear. For the plot placement, I thought it made most sense to read from top to bottom (as the plots are seen sinking in the water column). The first plot that your eyes are drawn to is the stacked bar plot. I thought that this is a good place to start as is gives information on total counts of attacks among all 5 activities. In this sense, it is the most general plot of the 3. You then look at the spider plot that gives some interesting insight into a subset of the data (only 3 shark species). Finally, you can see the surfing trend plot on the bottom as additional insight into a single activity that has an interesting trend over time.      
 
 ![](shark_poster.png)
 
