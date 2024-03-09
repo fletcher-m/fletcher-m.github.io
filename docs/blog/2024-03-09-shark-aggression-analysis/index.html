@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2024-03-09">
 <meta name="description" content="This is an analysis that conducted, where I looked at data containing accounts of aggressive shark behavior across the globe going all the way back to 1638 through 2023. I wanted to find out which activities people were doing when a shark became aggressive towards them.">
 
-<title>Fletcher McConnell - Analyzing Which Ocean Activities Are Most Likely to Encounter Aggressive Shark Behavior</title>
+<title>Fletcher McConnell - Analyzing Which Ocean Activities Are Most Likely to Involve Aggressive Shark Behavior</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -164,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <h1 class="title">Analyzing Which Ocean Activities Are Most Likely to Encounter Aggressive Shark Behavior</h1>
+      <h1 class="title">Analyzing Which Ocean Activities Are Most Likely to Involve Aggressive Shark Behavior</h1>
                   <div>
         <div class="description">
           This is an analysis that conducted, where I looked at data containing accounts of aggressive shark behavior across the globe going all the way back to 1638 through 2023. I wanted to find out which activities people were doing when a shark became aggressive towards them.
@@ -217,7 +217,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#motivation-behind-this-analysis" id="toc-motivation-behind-this-analysis" class="nav-link active" data-scroll-target="#motivation-behind-this-analysis">Motivation Behind this Analysis</a></li>
+  <li><a href="#motivation-behind-this-analysis" id="toc-motivation-behind-this-analysis" class="nav-link active" data-scroll-target="#motivation-behind-this-analysis">Motivation Behind this Analysis</a>
+  <ul class="collapse">
+  <li><a href="#question" id="toc-question" class="nav-link" data-scroll-target="#question">Question</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  </ul></li>
   <li><a href="#the-analysis-process" id="toc-the-analysis-process" class="nav-link" data-scroll-target="#the-analysis-process">The Analysis Process</a></li>
   <li><a href="#creating-visualizations" id="toc-creating-visualizations" class="nav-link" data-scroll-target="#creating-visualizations">Creating Visualizations</a></li>
   <li><a href="#spider-plot" id="toc-spider-plot" class="nav-link" data-scroll-target="#spider-plot">Spider Plot</a>
@@ -240,11 +244,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="motivation-behind-this-analysis" class="level1">
 <h1>Motivation Behind this Analysis</h1>
-<p>I have been around the ocean for the majority of my life and have enjoyed having fun riding waves or exploring beneath them. I have swam with sharks many times and it has always been a positive experience for me. Ever since the first Jaws movie came out, sharks have been perceived as a killing machine, with a blood lust that can only be appeased by taking human lives. In reality, this is so far from the truth. Sharks are incredible animals and on the rare occasions where they do have a negative interaction with humans, it is often a mistake on the shark’s part. I wanted to display the data to pull away the curtain of uncertainty on where sharks act aggressively. I hope that this post is informative and not scary.</p>
-<p>Data Available Here: https://public.opendatasoft.com/explore/dataset/global-shark-attack/table/?flg=en-us&amp;disjunctive.country&amp;disjunctive.area&amp;disjunctive.activity</p>
+<p>I have been around the ocean for the majority of my life and have enjoyed having fun riding waves or exploring beneath them. I have swum with sharks many times and it has always been a positive experience for me. Ever since the first Jaws movie came out, sharks have been perceived as a killing machine, with a blood lust that can only be appeased by taking human lives. In reality, this is so far from the truth. Sharks are incredible animals and, on the rare occasions where they do have a negative interaction with humans, it is often a mistake on the shark’s part. I wanted to display the data to pull away the curtain of uncertainty on where sharks act aggressively. I hope that this post is informative and not scary.</p>
+<section id="question" class="level3">
+<h3 class="anchored" data-anchor-id="question">Question</h3>
+<p>My overall question for this analysis was “During which ocean activities is a person most likely to experience an aggressive shark incident?”. I made 3 plots that each answered a sub-question pertaining to this overall question.</p>
+<p><strong>spider plot</strong> –&gt; “Among White Sharks, Tiger Sharks and Bull Sharks, what does the relative distribution of attacks look like among my 5 defined ocean activities?”</p>
+<p><strong>bar plot</strong> –&gt; “How do the counts of fatal and non-fatal encounters compare within each activity?”</p>
+<p><strong>line plot</strong> –&gt; “What does the trend of the number of annual attacks for surfing, in particular, look like and why might it look like this?”</p>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>The data that I used for this analysis came from the opendatasoft website and is linked below. Each row in the data frame represented a single documented aggressive shark incident. There were many columns describing aspects of the attack such as location, time of day, activity, species etc. The columns that I used for my analysis were the following:</p>
+<p>“activity” –&gt; column denoting what the person was doing at the time of attack</p>
+<p>“species” –&gt; column denoting the species of shark involved in the attack</p>
+<p>“year” –&gt; column denoting which year the attack occured during</p>
+<p>“fatal_y_n” –&gt; column denoting whether an attack was fatal (Y) or non-fatal (N)</p>
+<p><strong>Data Available Here:</strong> https://public.opendatasoft.com/explore/dataset/global-shark-attack/table/?flg=en-us&amp;disjunctive.country&amp;disjunctive.area&amp;disjunctive.activity</p>
 <ul>
-<li>This data had many missing values in some of the columns that I used for my analysis. There were also inconsistent naming conventions within columns. I did my best to work with these abnormalities, but there is absolutely room for error in my results.</li>
+<li>This data had many missing values in some of the columns that I used for my analysis. There were also inconsistent naming conventions within columns. I did my best to work with these abnormalities, but there is likely some amount of error in my results.</li>
 </ul>
+</section>
 </section>
 <section id="the-analysis-process" class="level1">
 <h1>The Analysis Process</h1>
@@ -272,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>I created three types of visualizations for this analysis. Each visualization is tied with one another, through looking at different aspects of the 5 activities mentioned above.</p>
+<p>I created three types of visualizations for this analysis. Each visualization is tied with one another, with the end goal of having all 3 within an infographic.</p>
 </section>
 <section id="spider-plot" class="level1">
 <h1>Spider Plot</h1>
@@ -282,15 +301,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"tiger shark"</span>, sharks<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"fishing"</span>, sharks<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"tiger shark"</span>, sharks<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"surfing|paddle boarding|body boarding"</span>, sharks<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"tiger shark"</span>, sharks<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"diving"</span>, sharks<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"tiger shark"</span>, sharks<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"standing|wading|floating"</span>, sharks<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"tiger shark"</span>, sharks<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"swimming"</span>, sharks<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count the number of Tiger Shark attacks for each activity</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"tiger shark"</span>, sharks<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"fishing"</span>, sharks<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"tiger shark"</span>, sharks<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"surfing|paddle boarding|body boarding"</span>, sharks<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"tiger shark"</span>, sharks<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"diving"</span>, sharks<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"tiger shark"</span>, sharks<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"standing|wading|floating"</span>, sharks<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"tiger shark"</span>, sharks<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"swimming"</span>, sharks<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -299,15 +319,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"white shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"fishing"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"white shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"surfing|paddle boarding|body boarding"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"white shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"diving"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"white shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"standing|wading|floating"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"white shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"swimming"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count the number of White Shark attacks for each activity</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"white shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"fishing"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"white shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"surfing|paddle boarding|body boarding"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"white shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"diving"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"white shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"standing|wading|floating"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"white shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"swimming"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -316,18 +337,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"bull shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"fishing"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"bull shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"surfing|paddle boarding|body boarding"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"bull shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"diving"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"bull shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"standing|wading|floating"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"bull shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"swimming"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count the number of Bull Shark attacks for each activity</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"bull shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"fishing"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"bull shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"surfing|paddle boarding|body boarding"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"bull shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"diving"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"bull shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"standing|wading|floating"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"bull shark"</span>, sharks_spider<span class="sc">$</span>species, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"swimming"</span>, sharks_spider<span class="sc">$</span>activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>I then used the values calculated for each of the three species of sharks to construct a spider plot in order to visualize differences among species.</p>
+<p>I then used the values calculated for each of the three species of sharks to construct a spider plot in order to visualize differences among species. For this plot, my goal was to represent general differences among the 3 species that I chose. I used solid black, dashed red and dotted blue for each separate species. This way, it is colorblind friendly and easy to separate each line from one another. I had started with rings within the spider plot that would represent particular values, however, I chose to remove these in order to simplify the plot. Since I am using relative amounts, values are not necessary and might prove to be more of a distraction than anything. I also chose to add a caption on the bottom with the total number of attacks among all activities for each species. I think that it is important to highlight that not all 3 species have the same number of attacks.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -384,7 +406,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="stacked-bar-plot" class="level1">
 <h1>Stacked Bar Plot</h1>
-<p>I next thought that it would be useful to know what the number of fatal vs.&nbsp;non-fatal attacks looks like for each of the 5 activities. I decided to use a stacked bar plot to show this. A note is that I added the pictures next to each bar outside of R. The code produced labels (surfing, fishing, swimming, diving, wading) next to each bar.</p>
+<p>I next thought that it would be useful to know what the number of fatal vs.&nbsp;non-fatal attacks looks like for each of the 5 activities. I decided to use a stacked bar plot to show this. A note is that I added the pictures next to each bar outside of R. The code produced labels (surfing, fishing, swimming, diving, wading) next to each bar. I wanted to make this bar plot as simple and easy to understand as possible. For the colors, I chose red for fatalities, since red makes intuitive sense to represent death. Instead of labels on the y-axis, I chose icons to represent each activity. This way, it is more engaging and requires even less effort to see what is going on. A couple of other choices were to color code the title (which allowed me to remove the legend) and place values within the bars (which allowed me to remove the axes entirely).</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -420,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>, </span>
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>, </span>
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>            <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="cn">NULL</span>,  <span class="co"># Remove the title here</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="cn">NULL</span>,</span>
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>,</span>
 <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total Number of Incidents"</span>,</span>
 <span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"* Data comes from global shark aggression cases dating back to 1638"</span>) <span class="sc">+</span></span>
@@ -435,80 +457,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
 <span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">20</span>)),</span>
 <span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>   <span class="co"># axis.text.y = element_blank(),</span></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">40</span>, <span class="dv">70</span>, <span class="dv">20</span>, <span class="dv">70</span>),</span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">20</span>), <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"gray"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">10</span>)),</span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),  </span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{title}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">40</span>, <span class="dv">70</span>, <span class="dv">20</span>, <span class="dv">70</span>),</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">20</span>), <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"gray"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">10</span>)),</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),  </span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{title}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p><img src="bar_plot_final.png" class="img-fluid"> The main idea that I pulled away from this plot is that the majority of incidents are non-fatal, although swimming has an abnormally high proportion of fatal incidents. This may be due to the fact that, when you are swimming, you do not have a surfboard or other object to block an attack. This is only one guess, however.</p>
+<p><img src="bar_plot_final.png" class="img-fluid"> The main idea that I want pulled away from this plot is that the majority of incidents are non-fatal. Swimming has an abnormally high proportion of fatal incidents. This may be due to the fact that, when you are swimming, you do not have a surfboard or other object to help block an attack. This is only one guess, however.</p>
 </section>
 <section id="line-plot" class="level1">
 <h1>Line Plot</h1>
-<p>In order to introduce the time variable into a plot, I decided to use a line plot to display the yearly count of number of attacks from 1900 to 2025. I first thought that I would display all 5 activities next to each other in order to compare trends, but ultimately decided to focus on surfing. Surfing had the largest increase and I believe that it can be attributed to the growing popularity of the sport around the world.</p>
+<p>In order to introduce the time variable into a plot, I decided to use a line plot to display the yearly count of number of attacks from 1900 to 2025. I first thought that I would display all 5 activities next to each other in order to compare trends, but ultimately decided to focus on surfing. Having all 5 plots next to each other is interesting but not quite the best fit for an info graphic. By highlighting the surfing trend, while leaving the other activity trends in the background, you can get a good idea of how much different surfing is. For simplicity, I only kept major horizontal grid lines, so that you can still compare values among the years. I thought that vertical grid lines might clutter the plot a bit and take away from the main point of the plot.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sharks_line <span class="ot">&lt;-</span> sharks <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, activity) <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"swimming|surfing|diving|fishing|standing|wading|floating"</span>, activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1900</span> <span class="sc">&amp;</span> year <span class="sc">&lt;</span> <span class="dv">2023</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">activity_group =</span> <span class="fu">case_when</span>(</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"fishing"</span>, activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Fishing"</span>,</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter data for only activity surfing and after 1900</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sharks_line <span class="ot">&lt;-</span> sharks <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, activity) <span class="sc">|&gt;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"surfing"</span>, activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1900</span> <span class="sc">&amp;</span> year <span class="sc">&lt;</span> <span class="dv">2023</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">activity_group =</span> <span class="fu">case_when</span>(</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"surfing"</span>, activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Surfing"</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"diving"</span>, activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Diving"</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"wading|standing|floating"</span>, activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Wading"</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">"swimming"</span>, activity, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">"Swimming"</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>activity_counts <span class="ot">&lt;-</span> sharks_line <span class="sc">%&gt;%</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, activity_group) <span class="sc">%&gt;%</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(activity_counts, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> count, <span class="at">color =</span> activity_group)) <span class="sc">+</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Number of Surfing-Related Shark Incidents Over the Years"</span>,</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total Count"</span>,</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Activity Group"</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1900</span>, <span class="dv">2023</span>)) <span class="sc">+</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  gghighlight<span class="sc">::</span><span class="fu">gghighlight</span>(activity_group <span class="sc">==</span> <span class="st">"Surfing"</span>) <span class="sc">+</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_markdown</span>(<span class="at">family =</span> <span class="st">"josefin"</span>,</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">face =</span> <span class="st">"bold"</span>,</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">size =</span> <span class="dv">17</span>,</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">hjust =</span> <span class="fl">1.5</span>,</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">40</span>)),</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray"</span>, <span class="at">size =</span> <span class="fl">0.3</span>),</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),  </span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">#panel.grid.major.y = element_blank(),  </span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">20</span>, <span class="dv">40</span>),</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">20</span>), <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">20</span>), <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">1</span>)</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># group by activity</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>activity_counts <span class="ot">&lt;-</span> sharks_line <span class="sc">%&gt;%</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, activity_group) <span class="sc">%&gt;%</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># create line plot for annual count of attacks for surfing </span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(activity_counts, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> count, <span class="at">color =</span> activity_group)) <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Number of Surfing-Related Shark Incidents Over the Years"</span>,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Total Count"</span>,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Activity Group"</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1900</span>, <span class="dv">2023</span>)) <span class="sc">+</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  gghighlight<span class="sc">::</span><span class="fu">gghighlight</span>(activity_group <span class="sc">==</span> <span class="st">"Surfing"</span>) <span class="sc">+</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_markdown</span>(<span class="at">family =</span> <span class="st">"josefin"</span>,</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">face =</span> <span class="st">"bold"</span>,</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">size =</span> <span class="dv">17</span>,</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">hjust =</span> <span class="fl">1.5</span>,</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">40</span>)),</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray"</span>, <span class="at">size =</span> <span class="fl">0.3</span>),</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),  </span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">#panel.grid.major.y = element_blank(),  </span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">20</span>, <span class="dv">40</span>),</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">20</span>), <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">1</span>),</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">20</span>), <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">1</span>)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="co"># add vertical dashed line to denote Gidget film (1959)</span></span>
 <span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1959</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
 <span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">1959</span>, <span class="at">y =</span> <span class="dv">40</span>, </span>
 <span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>             <span class="at">label =</span> <span class="st">"Gidget Premiers in Theaters"</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.4</span>, <span class="at">hjust =</span> <span class="fl">1.1</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">angle =</span> <span class="dv">90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p><img src="line_plot.png" class="img-fluid"> You can see from this plot, that the number of annual attacks drastically increased starting in the 1960’s. As I mentioned above, this is likely due to the growing popularity of the sport. More people in the water surfing carries a higher likelihood of an incident. I also noted when the film Gidget came out in 1959. This movie introduced Hollywood’s first surfing movie star and pulled surfing into the mainstream culture.</p>
+<p><img src="line_plot.png" class="img-fluid"> You can see from this plot, that the number of annual attacks drastically increased starting in the 1960’s. This is likely due to the growing popularity of the sport, beginning in the 1960’s. More people in the water surfing carries a higher likelihood of an incident. I also noted when the film Gidget came out in 1959. This movie introduced Hollywood’s first surfing movie star and pulled surfing into the mainstream culture.</p>
 </section>
 <section id="infographic" class="level1">
 <h1>Infographic</h1>
-<p>In order to combine these plots in a fun, educational and engaging way, I created an infographic to display the plots. This infographic explains the overarching question of “Which ocean activities are most likely to encounter an aggressive shark incident?”.</p>
+<p>In order to combine these plots in a fun, educational and engaging way, I created an infographic to display the plots. This infographic explains the overarching question of “Which ocean activities are most likely to engage an aggressive shark?”. I could have chosen a scary theme for this info graphic but decided to keep it light. I did this in order to avoid perpetuating the incorrect and over exaggerated stereotype of sharks being cold blooded killers. Although this whole piece focuses on aggressive shark incidents, I hope that the overall reaction to this is one of interest and not fear. For the plot placement, I thought it made most sense to read from top to bottom (as the plots are seen sinking in the water column). The first plot that your eyes are drawn to is the stacked bar plot. I thought that this is a good place to start as is gives information on total counts of attacks among all 5 activities. In this sense, it is the most general plot of the 3. You then look at the spider plot that gives some interesting insight into a subset of the data (only 3 shark species). Finally, you can see the surfing trend plot on the bottom as additional insight into a single activity that has an interesting trend over time.</p>
 <p><img src="shark_poster.png" class="img-fluid"></p>
 
 
@@ -517,14 +538,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{mcconnell2024,
   author = {McConnell, Fletcher},
   title = {Analyzing {Which} {Ocean} {Activities} {Are} {Most} {Likely}
-    to {Encounter} {Aggressive} {Shark} {Behavior}},
+    to {Involve} {Aggressive} {Shark} {Behavior}},
   date = {2024-03-09},
   url = {https://fletcher-m.github.io/blog/2024-03-09-shark-aggression-analysis/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-mcconnell2024" class="csl-entry quarto-appendix-citeas" role="listitem">
 McConnell, Fletcher. 2024. <span>“Analyzing Which Ocean Activities Are
-Most Likely to Encounter Aggressive Shark Behavior .”</span> March 9,
+Most Likely to Involve Aggressive Shark Behavior .”</span> March 9,
 2024. <a href="https://fletcher-m.github.io/blog/2024-03-09-shark-aggression-analysis/">https://fletcher-m.github.io/blog/2024-03-09-shark-aggression-analysis/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
