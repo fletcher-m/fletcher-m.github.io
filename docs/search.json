@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Fletcher McConnell",
     "section": "",
-    "text": "Hi, I’m Fletcher.\nI am a current MEDS (Master’s of Environmental Data Science) student at the Bren School of Environmental Science and Management. I have spent most of my life either on or near the ocean, so my interests tend to pull me in that direction."
+    "text": "Hi there! I’m Fletcher. I am a current MEDS (Master’s of Environmental Data Science) student at the Bren School of Environmental Science and Management (UCSB). I have an academic background in environmental science and professional experience working on and under the ocean. Outside of school and work, I love spending time paddling outrigger canoe, hiking in the mountains and anything else that gets me outside. Feel free to learn more about me by exploring around my website."
   },
   {
     "objectID": "index.html#education",
     "href": "index.html#education",
     "title": "Fletcher McConnell",
     "section": "Education:",
-    "text": "Education:\nBS Environmental Studies (2018)\nCurrent Master’s Student at Bren, UCSB (Master’s of Environmental Data Science)"
+    "text": "Education:\nBS Environmental Studies, UCSB (2018)\nCurrent Master’s Student at Bren School, UCSB (Master’s of Environmental Data Science)"
   },
   {
     "objectID": "blog/2023-10-23-my-first-post/index.html",
@@ -193,13 +193,55 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "I’ve spent most of my life around the ocean and, for a few years growing up, sailing on it. When I was 7, my family (parents, sister, cat & dog) decided to buy a sailboat and go travel for a while. We began in Ventura, CA and slowly worked our way down the coast of California and down into Mexico and then Central America for 2 years. We ended up leaving the sailboat in El Salvador and moving to Lake Tahoe for the next 2 years. After enjoying the mountains and learning how to ski, we decided that we wanted to give travelling another shot. We moved back down onto the sailboat and traveled for another couple years, completing Central America and seeing some of northern South America. Our final leg consisted of us heading out to the Galapagos Islands and then back up to Mexico from there. Altogether, we were living full time on the boat for 5 years.\n\n\n\n\n\n\n\n\nMy family’s boat “Desiderata” that we lived on for 5 years."
   },
   {
     "objectID": "blog.html",
     "href": "blog.html",
-    "title": "Blog",
+    "title": "Projects",
     "section": "",
     "text": "Analyzing Which Ocean Activities Are Most Likely to Involve Aggressive Shark Behavior\n\n\n\n\n\n\n\nOcean\n\n\nMEDS\n\n\nSharks\n\n\nVisualization\n\n\n\n\nThis is an analysis that conducted, where I looked at data containing accounts of aggressive shark behavior across the globe going all the way back to 1638 through 2023. I wanted to find out which activities people were doing when a shark became aggressive towards them.\n\n\n\n\n\n\nMar 9, 2024\n\n\nFletcher McConnell\n\n\n\n\n\n\n  \n\n\n\n\nEthical Considerations of Oceanic Data Access\n\n\n\n\n\n\n\nQuarto\n\n\nMEDS\n\n\nOcean\n\n\n\n\nI analyze bottlenecks in the flow of information and important ethical consideratons in regards to ocean data\n\n\n\n\n\n\nDec 11, 2023\n\n\nFletcher McConnell\n\n\n\n\n\n\n  \n\n\n\n\nDetermining Suitable Habitat for Oysters within EEZ regions of California\n\n\n\n\n\n\n\nQuarto\n\n\nMEDS\n\n\nOcean\n\n\nVisualization\n\n\n\n\nIn this post, I analyze suitable habitat for oysters, based on temperature and depth parameters. I then find the amount of area within California EEZ regions that meets these requirements\n\n\n\n\n\n\nDec 1, 2023\n\n\nFletcher McConnell\n\n\n\n\n\n\n  \n\n\n\n\nAirplane Crash Statistical Analyis\n\n\n\n\n\n\n\nQuarto\n\n\nMEDS\n\n\nWorkshop\n\n\n\n\nIn this blog, I analyze various aspects of airplane crashes, using a a dataset that logs crashes from 1908 to 2009\n\n\n\n\n\n\nDec 1, 2023\n\n\nFletcher McConnell\n\n\n\n\n\n\n  \n\n\n\n\nPlotting AQI and Thomas Fire Burn Area in Santa Barbara County in Python\n\n\n\n\n\n\n\nQuarto\n\n\nMEDS\n\n\nFire\n\n\nVisualization\n\n\n\n\nThis is an analysis that I did where I looked at daily air quality index values in Santa Barbara in 2017-2018 as well as the area burned by the Thomas Fire (2017) and plotted both.\n\n\n\n\n\n\nDec 1, 2023\n\n\nFletcher McConnell\n\n\n\n\n\n\n  \n\n\n\n\nMy first blog post\n\n\n\n\n\n\n\nQuarto\n\n\nMEDS\n\n\nWorkshop\n\n\n\n\nI’m going to tell you about my blog\n\n\n\n\n\n\nOct 23, 2023\n\n\nFletcher McConnell\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html#about",
+    "href": "about.html#about",
+    "title": "About",
+    "section": "",
+    "text": "A little bit more about my background"
+  },
+  {
+    "objectID": "about.html#growing-up-on-the-water",
+    "href": "about.html#growing-up-on-the-water",
+    "title": "About",
+    "section": "",
+    "text": "I’ve spent most of my life around the ocean and, for a few years growing up, sailing on it. When I was 7, my family (parents, sister, cat & dog) decided to buy a sailboat and go travel for a while. We began in Ventura, CA and slowly worked our way down the coast of California and down into Mexico and then Central America for 2 years. We ended up leaving the sailboat in El Salvador and moving to Lake Tahoe for the next 2 years. After enjoying the mountains and learning how to ski, we decided that we wanted to give travelling another shot. We moved back down onto the sailboat and traveled for another couple years, completing Central America and seeing some of northern South America. Our final leg consisted of us heading out to the Galapagos Islands and then back up to Mexico from there. Altogether, we were living full time on the boat for 5 years.\n\n\n\n\n\n\n\n\nMy family’s boat “Desiderata” that we lived on for 5 years."
+  },
+  {
+    "objectID": "about.html#day-to-day-on-the-boat",
+    "href": "about.html#day-to-day-on-the-boat",
+    "title": "About",
+    "section": "Day to Day on the Boat",
+    "text": "Day to Day on the Boat\n\n\n\n\n\n\n\n\n\n\nThe family boat “Desiderata” that we lived on for 5 years."
+  },
+  {
+    "objectID": "about.html#daily-life-on-the-boat",
+    "href": "about.html#daily-life-on-the-boat",
+    "title": "About",
+    "section": "Daily Life on the Boat",
+    "text": "Daily Life on the Boat\nMany people hear that we lived on a sailboat and assume that it was like being on a vacation every day. In reality, our lifestyle required some hard work. We dealt with all of the same trials and tribulations of any family, and all in within a 41 foot boat. My sister and I were home schooled (or boat schooled I suppose) and we had weekly chores, just like other kids. The difference was that, after cleaning the bathrooms, we could walk up and jump right in the water.\n\n\n\n\n\n\n\n\nStanding on Machu Picchu - one of the many amazing sights that we saw.\n\nOther areas of life on a boat are still possible, but much less convenient than if you were living in a house. For example, going to buy groceries was no longer as simple as hopping in a car and running out to the store. We were normally anchored offshore from a town, so our first step was to take our inflatable boat through the waves and haul it up onto the beach. We then needed to catch a bus that would take us to the store (sometimes it would be a half hour ride). After buying everything that we needed (or at least all that we could carry), we would make the trek back to the boat. Stocking up on groceries often turned into an all-day affair for us.\nTravelling by sailboat has now become very popular. Every year, hundreds of boats leave from San Diego on their way to Mexico in an event called the “Baja Ha Ha”. It’s a great way for first-time sailors/travelers to meet others doing the same thing and have some support along the way. You can check out my family’s full website that documents our travels if you’re interested to learn more."
+  },
+  {
+    "objectID": "about.html#other-things",
+    "href": "about.html#other-things",
+    "title": "About",
+    "section": "Other things",
+    "text": "Other things"
+  },
+  {
+    "objectID": "about.html#continuing-the-legacy",
+    "href": "about.html#continuing-the-legacy",
+    "title": "About",
+    "section": "Continuing the Legacy",
+    "text": "Continuing the Legacy\nWhile working in San Diego, I ended up buying a boat (Catalina 38) and living on it for almost 3 years. This was first boat and I had a blast heading out and sailing the bay almost every weekend."
   }
 ]

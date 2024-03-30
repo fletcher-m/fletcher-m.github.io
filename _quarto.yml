@@ -21,10 +21,11 @@ website:
       - icon: envelope
         href: mailto::fletcher.mcconnell@outlook.com
       - icon: linkedin
-        href: https://www.linkedin.com/in/fletcher-mcconnell-504931153/
+        href: https://www.linkedin.com/in/fletcher-mcconnell-253894294/
   page-footer: 
     background: light
-    left: "My footer"
+    left: "Copyright 2023, Fletcher McConnell"
+    right: This website is built with [{{< fa brands github title="GitHub octocat logo" >}}](https://github.com/fletcher-m/fletcher-m.github.io){target=_blank}, [{{< fa brands r-project title="R Project" >}}](https://www.r-project.org/about.html){target=_blank} and [Quarto](https://quarto.org/){target=_blank}
 format:
   html:
     theme: styles.scss
