@@ -12,7 +12,7 @@ I've spent most of my life around the ocean and, for a few years growing up, sai
 ```{r}
 #| echo: false
 #| fig-alt: "A white sailboat with a blue stripe with the sails up, sailing downwind."
-knitr::include_graphics("images/family_boat.png")
+knitr::include_graphics("images/sailboat.png")
 ```
 ::: {.center-text .extra-small-text .dark-gray-text .topbr}
 My family's boat "Desiderata" that we lived on for 5 years.
