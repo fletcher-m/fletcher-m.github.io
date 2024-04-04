@@ -13,7 +13,7 @@ website:
       - href: resources.qmd
         text: Resources
       - blog.qmd
-      - href: ~/Documents/Github/fletcher-m.github.io/Resume/fletcher_mcconnell_resume.pdf
+      - href: Resume/fletcher_mcconnell_resume.pdf
         text: Resume
     right: 
       - icon: github
