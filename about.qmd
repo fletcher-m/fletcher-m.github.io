@@ -12,7 +12,7 @@ I've spent most of my life around the ocean and, for a few years growing up, sai
 ```{r}
 #| echo: false
 #| fig-alt: "A white sailboat with a blue stripe with the sails up, sailing downwind."
-knitr::include_graphics("images/sailboat.png")
+knitr::include_graphics("images/sailboat.jpeg")
 ```
 ::: {.center-text .extra-small-text .dark-gray-text .topbr}
 My family's boat "Desiderata" that we lived on for 5 years.
@@ -26,7 +26,7 @@ Many people hear that we lived on a sailboat and assume that it was like being o
 ```{r}
 #| echo: false
 #| fig-alt: "My family standing in front of famous Incan ruins Machu Picchu"
-knitr::include_graphics("images/machu.png")
+knitr::include_graphics("images/machu.jpeg")
 ```
 ::: {.center-text .extra-small-text .dark-gray-text .topbr}
 Standing on Machu Picchu - one of the many amazing sights that we saw.
