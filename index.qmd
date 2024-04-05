@@ -7,7 +7,7 @@ about:
   image-shape: rounded
   links:
     - text: Linkedin
-      href: https://www.linkedin.com/in/fletcher-mcconnell-504931153/
+      href: https://www.linkedin.com/in/fletcher-mcconnell-253894294/
       icon: linkedin
     - text: Github
       href: https://github.com/fletcher-m
