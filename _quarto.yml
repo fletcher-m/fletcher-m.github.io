@@ -15,13 +15,27 @@ website:
       - blog.qmd
       - href: resume/fletcher_resume.pdf
         text: Resume
-    right: 
+    right:
+      - text: Get in touch!
+        menu:
+          - icon: linkedin
+            text: LinkedIn
+            href: https://www.linkedin.com/in/fletcher-mcconnell-253894294/
+          - icon: envelope
+            text: Email
+            href: mailto::fletcher.mcconnell@outlook.com
+          - icon: github
+            text: Github
+            href: https://github.com/fletcher-m
       - icon: github
-        href: https://github.com/fletcher-m
-      - icon: envelope
-        href: mailto::fletcher.mcconnell@outlook.com
-      - icon: linkedin
-        href: https://www.linkedin.com/in/fletcher-mcconnell-253894294/
+        href: https://github.com/fletcher-m/fletcher-m.github.io
+        target: _blank
+      #- icon: github
+       # href: https://github.com/fletcher-m
+      #- icon: envelope
+       # href: mailto::fletcher.mcconnell@outlook.com
+      #- icon: linkedin
+       # href: https://www.linkedin.com/in/fletcher-mcconnell-253894294/
   page-footer: 
     background: light
     left: "Copyright 2023, Fletcher McConnell"
