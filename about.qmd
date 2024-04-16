@@ -6,7 +6,7 @@ title-block-banner: true
 
 
 ## Growing Up On the Water
-I've spent most of my life around the ocean and, for a few years growing up, sailing on it. When I was 7, my family (parents, sister, cat & dog) decided to buy a sailboat and go travel for a while. We began in Ventura, CA and slowly worked our way down the coast of California and down into Mexico and then Central America for 2 years. We ended up leaving the sailboat in El Salvador and moving to Lake Tahoe for the next 2 years. After enjoying the mountains and learning how to ski, we decided that we wanted to give travelling another shot. We moved back down onto the sailboat and traveled for another couple years, completing Central America and seeing some of northern South America. Our final leg consisted of us heading out to the Galapagos Islands and then back up to Mexico from there. Altogether, we were living full time on the boat for 5 years.     
+I've spent much of my life around the ocean and, for a few years during my childhood, sailing on it. When I was seven, my family—including my parents, sister, cat, and dog—decided to buy a sailboat and embark on a journey. We began in Ventura, CA, and gradually traveled down the coast of California, into Mexico, and through part of Central America over the span of two years. For the most part, we would anchor our boat offshore, whether it was by a secluded beach or a town. We eventually left the sailboat in El Salvador and moved to Lake Tahoe for the next two years, where we embraced mountain life and learned how to ski—a stark contrast to the tropical beaches that we had gotten used to.
 
 :::{.column-margin}
 ```{r}
@@ -19,8 +19,12 @@ My family's boat "Desiderata" that we lived on for 5 years.
 :::
 :::
 
+After our fun in the snow, we were eager to resume our travels, so we moved back onto the sailboat and spent another couple of years exploring the rest of Central America and parts of northern South America. Our final voyage took us to the Galapagos Islands before returning to Mexico. In total, we lived full-time on the boat for five years, experiencing the world from the unique perspective of life at sea.  
+
+
+
 ## Daily Life on the Boat
-Many people hear that we lived on a sailboat and assume that it was like being on a vacation every day. In reality, our lifestyle required some hard work. We dealt with all of the same trials and tribulations of any family, and all in within a 41 foot boat. My sister and I were home schooled (or boat schooled I suppose) and we had weekly chores, just like other kids. The difference was that, after cleaning the bathrooms, we could walk up and jump right in the water.
+Many people assume that living on a sailboat is like being on a perpetual vacation. In truth, our lifestyle involved a great deal of hard work. We faced the same challenges as any family, but in the confined space of a 41-foot boat. My sister and I were home schooled—maybe we should call it 'boat schooled'—and we had weekly chores, much like other kids. The difference was that after cleaning the bathrooms, we could step outside and dive straight into the water.
 
 :::{.column-margin}
 ```{r}
@@ -29,14 +33,13 @@ Many people hear that we lived on a sailboat and assume that it was like being o
 knitr::include_graphics("images/machu.jpeg")
 ```
 ::: {.center-text .extra-small-text .dark-gray-text .topbr}
-Standing on Machu Picchu - one of the many amazing sights that we saw.
+Standing on Machu Picchu - one of the many amazing places that we visited.
 :::
 :::
 
-Other areas of life on a boat are still possible, but much less convenient than if you were living in a house. For example, going to buy groceries was no longer as simple as hopping in a car and running out to the store. We were normally anchored offshore from a town, so our first step was to take our inflatable boat through the waves and haul it up onto the beach. We then needed to catch a bus that would take us to the store (sometimes it would be a half hour ride). After buying everything that we needed (or at least all that we could carry), we would make the trek back to the boat. Stocking up on groceries often turned into an all-day affair for us.  
+While living on a boat, many aspects of daily life were still possible, but they were often far less convenient than living in a house. For instance, a trip to buy groceries was no longer as simple as hopping in a car and heading to the Vons down the street. Typically anchored offshore from a town, we would first navigate our inflatable boat through the waves and onto the beach. From there, we'd catch a bus to the store, sometimes enduring a half-hour ride. Once we'd gathered all the groceries we needed (or as much as we could carry), we would begin the journey back to the boat.  This routine often made grocery shopping an all-day expedition for us. 
 
-Travelling by sailboat has now become very popular. Every year, hundreds of boats leave from San Diego on their way to Mexico in an event called the "Baja Ha Ha". It's a great way for first-time sailors/travelers to meet others doing the same thing and have some support along the way. You can check out my family's full [website](https://sv-desiderata.com/) that documents our travels if you're interested to learn more.
-
+Travelling by sailboat has now become very popular. Every year, hundreds of boats leave from San Diego on their way to Mexico in an event called the "Baja Ha Ha". It's a great way for first-time sailors/travelers to meet others that are willing to give stepping out of the box a try. If you would like to learn more about my family's adventures on the boat, you can visit our [website](https://sv-desiderata.com/) that documents our travels. 
 
 
 

@@ -10,8 +10,6 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-      - href: resources.qmd
-        text: Resources
       - blog.qmd
       - href: resume/fletcher_resume.pdf
         text: Resume
