@@ -11,7 +11,7 @@ website:
         text: Home
       - about.qmd
       - blog.qmd
-      - href: resume/fletcher_mcconnell_resume.pdf
+      - href: resume/fletcher_resume.pdf
         text: Resume
     right:
       - text: Get in touch!
