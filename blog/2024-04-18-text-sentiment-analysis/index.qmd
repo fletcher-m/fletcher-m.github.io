@@ -11,7 +11,7 @@ date: 03-09-2024
 categories: [sentiment analysis, MEDS, text analysis]
 bibliography: references.bib
 citation:
-  url: https://fletcher-m.github.io/blog/2024-03-09-shark-aggression-analysis/
+  url: https://fletcher-m.github.io/blog/2024-04-18-text-sentiment-analysis/
 image: text_sentiment.png
 eval: FALSE
 ---
